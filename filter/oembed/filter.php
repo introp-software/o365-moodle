@@ -55,6 +55,10 @@ class filter_oembed extends moodle_text_filter {
                 $jsinitialised = true;
             }
         }
+        if (get_config('filter_oembed', 'provider_powerbi_enabled')) {
+            global $PAGE;
+            $PAGE->requires->yui_module('moodle-filter_oembed-powerbiloader', 'M.filter_oembed.init_powerbiloader');
+        }		
     }
 
     /**
@@ -156,7 +160,7 @@ class filter_oembed extends moodle_text_filter {
      */
     public static function get_supported_providers() {
         return [
-            'docsdotcom',
+            'docsdotcom', 'powerbi'
         ];
     }
 }
