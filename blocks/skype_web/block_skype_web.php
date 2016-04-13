@@ -64,7 +64,17 @@ class block_skype_web extends block_base
         }
 
         $this->content         =  new stdClass;
-        $this->content->text   = '<div>Skype Status : <span id="skype_status"></span></div>';
+//        $this->content->text   = '<div>Skype Status : <span id="skype_status"></span></div>';
+        $this->content->text   = '<div class="chat-service"><h3 style="margin-left: 20px">Skype Status : <span id="skype_status"></h3>';
+        $this->content->text   .= '<div class="conversation">';
+        $this->content->text   .= '<div id="start" class="header">';
+        $this->content->text   .= '<input type="text" id="chat-to" class="editable" placeholder="sip:someone@example.com" />';
+        $this->content->text   .= '<div><a id="btn-start-messaging" class="iconfont chat" title="Start Instant Messaging"></a></div></div>';
+        $this->content->text   .= '<div id="status-header" class="header" style="display: none;"><div class="right-controls">';
+        $this->content->text   .= '<a id="btn-stop-messaging" class="icon icon-small icon-close" title="Stop Instant Messaging"></a></div>';
+        $this->content->text   .= '<h3>Found User</h3><div class="chat-name"></div><div class="notification"></div></div>';
+        $this->content->text   .= '<div id="message-history" class="messages"></div>';
+        $this->content->text   .= '<div id="input-message" class="chatinput editable" contenteditable="true" placeholder="Type a message here" style="display: none;"></div></div></div>';
         $this->content->footer = '';
 
         return $this->content;
