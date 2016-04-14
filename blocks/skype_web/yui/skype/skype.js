@@ -20,7 +20,7 @@ YUI.add('moodle-block_skype_web-skype', function (Y) {
                 window.skypeWebApp = new api.application();
 
                 var client = window.skypeWebApp;
-                
+
                 window.skypeWebApp.signInManager.state.changed(function (state) {
                     console.log(state);
                     skype_div.innerHTML = state;
@@ -29,7 +29,7 @@ YUI.add('moodle-block_skype_web-skype', function (Y) {
 
                 var params =
                 {
-                    "client_id": "9dd17984-497f-42e1-8304-a3c7f2b5e9c4",
+                    "client_id": config.client_id,
                     "origins": ["https://webdir.online.lync.com/autodiscover/autodiscoverservice.svc/root"],
                     "cors": true,
                     "version": 'SkypeWebMoodle/1.0.0'
@@ -41,183 +41,218 @@ YUI.add('moodle-block_skype_web-skype', function (Y) {
                 ).then(function () {
                     // when the sign in operation succeeds display the user name
                     console.log('Signed in as ' + client.personsAndGroupsManager.mePerson.displayName());
-                    console.log(document.getElementById('btn-start-messaging'));
 
-                    document.querySelector('body').addEventListener('keydown', function(event) {
+                    // join an online meeting and start video
+                    // document.getElementById("btn-add-startNewVideoMeeting").removeEventListener('click', function () {});
+                    document.getElementById('startNewVideoMeeting').onclick = function () {
+                        console.log('new meeting');
+                        var conv, dfd, meetingUri;
+                        conv = client.conversationsManager.createConversation();
+                        console.log(conv);
+                        document.getElementById('newMeetingUri').value = '';
+                        dfd = conv.videoService.start().then(function () {
+                            meetingUri = conv.uri();
+                            console.log(meetingUri);
+                            document.getElementById('newMeetingUri').value = meetingUri;
+                            document.getElementsByClassName('c-add-p-container')[0].className = '';
+                            document.getElementsByClassName('c-add-p-container')[0].className = 'c-add-p-container';
+                        });
+                        console.log(dfd);
+                    };
 
-                        if (event.target.id == 'input-message') {
-                            if (event.keyCode == 13) {
-                                event.preventDefault();
-                                sendMessage();
-                            }
+                    // document.getElementById("btn-add-participant").removeEventListener('click', function () {});
+                    document.getElementById("btn-add-participant").onclick = function () {
+                        var conv = client.conversationsManager.conversations(0), uri = document.getElementById('txt-contact').value, dfd;
+                        console.log(uri);
+                        document.getElementById('txt-contact').value = '';
+                        if (true) {
+                            var pSearch = client.personsAndGroupsManager.createPersonSearchQuery();
+                            pSearch.text(uri);
+                            pSearch.limit(1);
+                            pSearch.getMore().then(function () {
+                                var sr = pSearch.results();
+                                if (sr.length == 0)
+                                    alert('Contact not found');
+
+                                return sr[0].result;
+                            }).then(function (contact) {
+                                contact.displayName.get().then(function (displayName) {
+                                    var li = document.createElement('li');
+                                    li.innerHTML = displayName
+                                    document.getElementById('participants').appendChild(li);
+                                    var conversation = document.createElement('div');
+                                    conversation.className = 'conversation';
+                                    conversation.style.textAlign = 'center';
+
+                                    var header = document.createElement('div');
+                                    header.className = 'header';
+
+                                    var h3 = document.createElement('h3');
+                                    h3.innerHTML = displayName;
+
+                                    var av_container = document.createElement('div');
+                                    av_container.className = 'av-container';
+                                    var render_window = document.createElement('div');
+                                    render_window.className = 'render-window';
+                                    render_window.id = 'showRemoteVideoInMeeting';
+
+                                    var show_video_btn = document.createElement('div');
+                                    show_video_btn.innerHTML = 'Show Remote Video';
+                                    show_video_btn.className = 'button show_remote_vdo';
+                                    show_video_btn.id = 'showRemoteVideoInMeeting';
+                                    show_video_btn.setAttribute('rel', 'render_' + displayName.split(' ').join('_'));
+
+                                    av_container.appendChild(render_window);
+                                    header.appendChild(h3);
+
+                                    conversation.appendChild(show_video_btn)
+                                    conversation.appendChild(header);
+                                    conversation.appendChild(av_container);
+
+                                    document.getElementsByClassName('conference')[0].appendChild(conversation);
+                                    dfd = addParticipant(conv, uri);
+
+                                });
+                            }).then(null, function (error) {
+                                // if either of the steps above threw an exception,
+                                // catch it here and display to the user
+                                alert('Something went wrong. Please try again.');
+                            });
                         }
+                    };
 
-                        if (event.target.id == 'chat-to') {
-                            if (event.keyCode == 13) {
-                                event.preventDefault();
-                                startInstantMessaging();
+                    // document.querySelector('body').removeListener('click', function () {});
+
+                    document.querySelector('body').addEventListener('click', function(event) {
+                        console.log(event.target.id);
+                        if (event.target.id == 'showRemoteVideoInMeeting') {
+                            var conv, channel, dfd;
+                            if (client.conversationsManager.conversations.size() == 1) {
+                                conv = client.conversationsManager.conversations(0);
+                                console.log(conv.participants(0));
+                                for (var participant in conv.participants) {
+                                    if (participant.person.displayName == event.target.rel) {
+                                        channel = participant.video.channels(0);
+                                        console.log(channel.stream.source.sink.container(document.getElementById('renderWindow')));
+                                        dfd = channel.isStarted.set(true);
+                                        break;
+                                    }
+                                }
                             }
                         }
                     });
-                    
-                    document.getElementById('btn-start-messaging').onclick = function (e) {
-                        if (skype_state == 'SignedIn') {
-                            startInstantMessaging();
-                        } else {
-                            alert('You are not signed in yet. Please wait to sign in Skype');
-                        }
-
-                    };
-
-                    document.getElementById('btn-send-message').onclick = function () {
-                        sendMessage();
-                    };
-
-
-
                     client.conversationsManager.conversations.get().then(function (conversationsArray) {
                         if (conversationsArray && conversationsArray.length > 0) {
-                            var status = document.getElementById('status');
-                            status.innerText = 'Disconnected existed conversation.';
-                            // $('#status').text('Disconnected existed conversation.');
                             conversationsArray.forEach(function (element, index, array) {
                                 console.log("Closing existed conversation...");
-                                element.chatService.stop();
+                                client.conversationsManager.conversations.remove(element);
                             });
                         }
                     });
 
                     var addedListener = client.conversationsManager.conversations.added(function (conversation) {
-                        var con = client.conversationsManager.conversations(0);
-                        if (con && con.selfParticipant.chat.state() == "Connected")
-                            return;
+                        var chatService, dfdChatAccept, audioService, dfdAudioAccept, videoService, dfdVideoAccept, selfParticipant, name, timerId;
+                        selfParticipant = conversation.selfParticipant;
                         chatService = conversation.chatService;
-                        chatService.accept.enabled.when(true, function () {
-                            // instead of using chatService.accept.enabled.changed, selfParticipant.chat.state.changed should also work.
-                            // conversation.selfParticipant.chat.state.changed(function (state) {
-                            var fAccept = confirm("Accept this IM invitation?");
-                            if (fAccept) {
-                                incomingMessageCount = 0;
-                                chatService.accept();
-                                uiToChatState();
-                                var chat_name = document.getElementsByClassName('chat-name');
-                                chat_name[0].innerHTML = conversation.participants(0).person.displayName();
-                                // $(".chat-name").text(conversation.participants(0).person.displayName());
+                        audioService = conversation.audioService;
+                        videoService = conversation.videoService;
+                        if (chatService.accept.enabled()) {
+                            name = conversation.participants(0).person.displayName();
+                            if (confirm('Accept incoming chat request from ' + name + '?')) {
+                                console.log('accepting the incoming chat request');
+                                dfdChatAccept = chatService.accept();
+                                monitor('Accepting chat request from ' + name, dfdChatAccept);
                             }
                             else {
+                                console.log('declining the incoming chat request');
                                 chatService.reject();
                             }
-                            conversation.historyService.activityItems.added(function (message) {
-                                incomingMessageCount++;
-                                if (incomingMessageCount != 2) {
-                                    historyAppend(XMessage(message));
+                        }
+                        // participant audio and video state changes
+                        conversation.participants.added(function (p) {
+                            p.video.state.changed(function (newState, reason, oldState) {
+                                // a convenient place to set the video stream container
+                                if (newState == 'Connected')
+                                    p.video.channels(0).stream.source.sink.container(document.getElementById("renderWindow"));
+                            });
+                            p.audio.state.changed(function (newState, reason, oldState) {
+                                //onChanged('_participant.audio.state', newState, reason, oldState);
+                            });
+                        });
+                        function onAudioVideoNotified() {
+                            // AV invitation may come from a 1:1 conversation only, so the caller is
+                            // the single participant in the participants collection
+                            var name = conversation.participants(0).person.displayName();
+                            if (selfParticipant.video.state() == 'Notified') {
+                                if (confirm('Accept a video call from ' + name + '?')) {
+                                    console.log('accepting a video call');
+                                    // selfParticipant video stream container can be set before we
+                                    // accept the incominng video call or after it is accepted or even
+                                    // later, when the selfParticipant video state becomes "Connected"
+                                    dfdVideoAccept = videoService.accept();
+                                    monitor('Accepting video request from ' + name, dfdVideoAccept);
                                 }
-                            });
+                                else if (confirm('Accept a video call from ' + name + ' with audio only?\n' +
+                                        '(You will still see the incoming video)')) {
+                                    console.log('accepting a video call with audio');
+                                    dfdAudioAccept = audioService.accept();
+                                    monitor('Accepting audio request from ' + name, dfdAudioAccept);
+                                }
+                                else {
+                                    console.log('declining the incoming video request');
+                                    videoService.reject();
+                                }
+                            }
+                            else if (selfParticipant.audio.state() == 'Notified') {
+                                if (confirm('Accept an audio call from ' + name + '?')) {
+                                    console.log('accepting the audio call');
+                                    dfdAudioAccept = audioService.accept();
+                                    monitor('Accepting audio call from ' + name, dfdAudioAccept);
+                                }
+                                else {
+                                    console.log('declining the incoming audio request');
+                                    audioService.reject();
+                                }
+                            }
+                            timerId = null;
+                        }
+
+                        selfParticipant.audio.state.changed(function (newState, reason, oldState) {
+                            if (newState == 'Notified' && !timerId)
+                                timerId = setTimeout(onAudioVideoNotified, 0);
+                        });
+                        selfParticipant.video.state.changed(function (newState, reason, oldState) {
+                            var selfChannel;
+                            if (newState == 'Notified' && !timerId) {
+                                timerId = setTimeout(onAudioVideoNotified, 0);
+                            }
+                            else if (newState == 'Connected') {
+                                selfChannel = conversation.selfParticipant.video.channels(0);
+                                selfChannel.stream.source.sink.container.set(document.getElementById("previewWindow"));
+                            }
+                        });
+                        conversation.state.changed(function onDisconnect(state) {
+                            if (state == 'Disconnected') {
+                                conversation.state.changed.off(onDisconnect);
+                                client.conversationsManager.conversations.remove(conversation);
+                            }
                         });
                     });
-
                     registeredListeners.push(addedListener);
-                    var removedListener = client.conversationsManager.conversations.removed(function (conversation) {
-                        console.log('one conversation is removed');
-                    });
-                    registeredListeners.push(removedListener);
-
-                    function sendMessage() {
-                        // var message = $("#input-message").text();
-                        var message = document.getElementById('input-message').innerHTML;
-                        if (message) {
-                            chatService.sendMessage(message).catch(function (e) {
-                                console.log('Cannot send the message');
-                                console.log(e);
-                            });
-                        }
-                        // $("#input-message").text("");
-                        document.getElementById('input-message').innerHTML = "";
-                    }
-
-                    function startInstantMessaging() {
-                        var pSearch = client.personsAndGroupsManager.createPersonSearchQuery();
-                        pSearch.limit(1);
-                        // pSearch.text($('#chat-to').text());
-                        alert(document.getElementById('chat-to').value);
-                        pSearch.text(document.getElementById('chat-to').value);
-                        pSearch.getMore().then(function () {
-                            var sr = pSearch.results();
-                            if (sr.length < 1)
-                                alert('Contact not found');
-                            return sr[0].result;
-                        }).then(function (contact) {
-                            console.log(contact);
-                            uiToChatState();
-                            // $(".chat-name").text(contact.displayName());
-                            console.log(contact.displayName());
-                            document.getElementsByClassName('chat-name')[0].innerHTML = contact.displayName();
-                            var conversation = client.conversationsManager.getConversation(contact);
-                            chatService = conversation.chatService;
-                            conversation.selfParticipant.chat.state.when("Connected", function (state) {
-                                addNotification('Conversation state: ' + state);
-                                console.log(state);
-                                addNotification('Now you can send messages');
-                                conversation.historyService.activityItems.added(function (message) {
-                                    historyAppend(XMessage(message));
-                                });
-                            });
-                            chatService.start().then(function () {
-                                chatService.sendMessage('How are you?');
-                            });
-                        }).then(null, function (error) {
-                            console.error(error);
-                            addNotification('Search failed ' + error);
+                    function addParticipant(conv, uri) {
+                        var person, participant, searchQuery;
+                        searchQuery = client.personsAndGroupsManager.createPersonSearchQuery();
+                        searchQuery.text(uri);
+                        return searchQuery.getMore().then(function (results) {
+                            person = results[0].result;
+                            participant = conv.createParticipant(person);
+                            conv.participants.add(participant);
+                            conv.chatService.sendMessage('Hi, meeting now!');
                         });
-                        function addNotification(text) {
-                            // $(".notification").text(text);
-                            document.getElementsByClassName('notification')[0].innerHTML = text;
-                        }
                     }
 
-                    function XMessage(message) {
-                        // var xTitle = $('<div>').addClass('sender');
-                        var xTitle = document.createElement('div').attr('class', 'sender');
-                        // var xStatus = $('<div>').addClass('status');
-                        var xStatus = document.createElement('div').attr('class', 'status');
-                        // var xText = $('<div>').addClass('text').text(message.text());
-                        var xText = document.createElement('div').attr('class', 'sender').innerHTML= message.text();
-                        // var xMessage = $('<div>').addClass('message');
-                        var xMessage = document.createElement('div').attr('class', 'message');
-                        xMessage.append(xTitle, xStatus, xText);
-                        if (message.sender) {
-                            message.sender.displayName.get().then(function (displayName) {
-                                xTitle.text(displayName);
-                            });
-                        }
-                        message.status.changed(function (status) {
-                            //xStatus.text(status);
-                        });
-                        if (message.sender.id() == client.personsAndGroupsManager.mePerson.id())
-                            xMessage.addClass("fromMe");
-                        return xMessage;
-                    }
 
-                    function uiToChatState() {
-                        // $("#input-message").show();
-                        document.getElementById('input-message').style.display = 'block';
-                        // $("#start").hide();
-                        document.getElementById('start').style.display = 'none';
-                        // $('#status-header').show();
-                        document.getElementById('status-header').style.display = "block";
-                    }
 
-                    function uiToStartState() {
-                        $("#message-history").empty();
-                        $("#input-message").hide();
-                        $("#start").show();
-                        $('#status-header').hide();
-                    }
-                    function historyAppend(message) {
-                        var xHistory = document.getElementById('message-history');
-                        xHistory.append(message);
-                        xHistory.animate({ "scrollTop": xHistory.scrollHeight }, 'fast');
-                    }
 
                 }, function (error) {
                     console.log(error || 'Cannot sign in');

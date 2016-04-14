@@ -57,24 +57,28 @@ class block_skype_web extends block_base
         $skypesdkurl = new moodle_url('https://swx.cdn.skype.com/shared/v/1.2.9/SkypeBootstrap.js');
         $PAGE->requires->js($skypesdkurl, true);
 
-        $PAGE->requires->yui_module('moodle-block_skype_web-skype', 'M.block_skype_web.init_skype', array());
+        $client_id = get_config('auth_oidc', 'clientid');
+
+        $PAGE->requires->yui_module('moodle-block_skype_web-skype', 'M.block_skype_web.init_skype', array(array('client_id' => $client_id)));
 
         if ($this->content !== null) {
             return $this->content;
         }
 
-        $this->content         =  new stdClass;
-//        $this->content->text   = '<div>Skype Status : <span id="skype_status"></span></div>';
-        $this->content->text   = '<div class="chat-service"><h3 style="margin-left: 20px">Skype Status : <span id="skype_status"></h3>';
-        $this->content->text   .= '<div class="conversation">';
-        $this->content->text   .= '<div id="start" class="header">';
-        $this->content->text   .= '<input type="text" id="chat-to" class="editable" placeholder="sip:someone@example.com" />';
-        $this->content->text   .= '<div><a id="btn-start-messaging" class="iconfont chat" title="Start Instant Messaging"></a></div></div>';
-        $this->content->text   .= '<div id="status-header" class="header" style="display: none;"><div class="right-controls">';
-        $this->content->text   .= '<a id="btn-stop-messaging" class="icon icon-small icon-close" title="Stop Instant Messaging"></a></div>';
-        $this->content->text   .= '<h3>Found User</h3><div class="chat-name"></div><div class="notification"></div></div>';
-        $this->content->text   .= '<div id="message-history" class="messages"></div>';
-        $this->content->text   .= '<div id="input-message" class="chatinput editable" contenteditable="true" placeholder="Type a message here" style="display: none;"></div></div></div>';
+        $this->content = new stdClass;
+        $this->content->text = '';
+        $this->content->text = '<div class="conference">';
+        $this->content->text .= '<h2>Conferance</h2><h3 style="margin-left: 20px">Skype Status : <span id="skype_status"></span></h3>';
+        $this->content->text .= '<div class="conversation" style="padding: 10px 0px 10px 10px"><div id="startNewVideoMeeting" class="button">Start a new video meeting</div><br>';
+        $this->content->text .= '<br><input id="newMeetingUri" class="input" placeholder="Meeting URI" />';
+        $this->content->text .= '<div class="">';
+        $this->content->text .= '<div class="add-p-container">';
+        $this->content->text .= '<br><input type="text" id="txt-contact" placeholder="sip:someone@example.com" />';
+        $this->content->text .= '<button id="btn-add-participant">Add</button><br>';
+        $this->content->text .= '<h4>Participants</h4><ul id="participants"></ul></div></div></div>';
+        $this->content->text .= '<div class="conversation"><div class="header"><h3>Self Camera</h3></div>';
+        $this->content->text .= '<div id="av-self" class="av-container"><div id="previewWindow" class="render-window"></div></div></div></div>';
+
         $this->content->footer = '';
 
         return $this->content;

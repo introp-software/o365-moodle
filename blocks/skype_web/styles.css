@@ -17,7 +17,7 @@
 .conversation {
     display: inline-block;
     vertical-align: top;
-
+    background-color: #ffffff;
     border: 1px solid #e6e6e6;
     padding: 0px;
     margin: 10px;
@@ -241,4 +241,97 @@
 
 .icon-close:hover {
     background-color: #e6e6e6;
+}
+
+.c-add-p-container{
+    display: inline-block;
+    position: relative;
+    top: 15px;
+}
+
+.button {
+    cursor: pointer;
+    padding: 2pt 5pt;
+    display: inline-block;
+    -height: 23px;
+    font-size: 18px;
+    background-color: rgb(16,158,222);
+    color: #ffffff;
+    margin-top: 2px;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.conference .add-p-container{
+    display: inline-block;
+}
+
+.c-add-p-container{
+    display: inline-block;
+    position: relative;
+    top: 15px;
+}
+
+.av-container {
+    background-color: #0170ab;
+    position: relative;
+    padding: 5px;
+}
+
+.av-container > * {
+    margin: 10px;
+}
+
+.av-container .right-controls {
+    float: right;
+}
+
+.av-container .ctr-buttons {
+    display: flex;
+    position: relative;
+    height: auto;
+    margin: 8px;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.av-container .ctr-buttons > * {
+    margin: 8px;
+}
+
+.av-container .c-name {
+    color: #ffffff;
+}
+
+.av-container .render-window {
+    margin: 10px auto;
+
+    position: static;
+    display: block;
+    width: 260px;
+    height: 260px;
+
+    background-image: url([[pix:block_skype_web|default]]);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.input {
+    border: 1pt solid gray;
+    padding: 2pt;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.input {
+    border: 1pt solid gray;
+    padding: 2pt;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 252pt;
+    height: 15pt;
+    margin-top: 2pt;
 }
