@@ -33,7 +33,11 @@ class block_skype_web extends block_base
      */
     public function init()
     {
+        global $PAGE;
         $this->title = get_string('skype_web', 'block_skype_web');
+        $client_id = get_config('auth_oidc', 'clientid');
+        $PAGE->requires->yui_module('moodle-block_skype_web-skype', 'M.block_skype_web.init_skype', array(array('client_id' => $client_id)));
+
     }
 
     /**
@@ -57,10 +61,6 @@ class block_skype_web extends block_base
         $skypesdkurl = new moodle_url('https://swx.cdn.skype.com/shared/v/1.2.9/SkypeBootstrap.js');
         $PAGE->requires->js($skypesdkurl, true);
 
-        $client_id = get_config('auth_oidc', 'clientid');
-
-        $PAGE->requires->yui_module('moodle-block_skype_web-skype', 'M.block_skype_web.init_skype', array(array('client_id' => $client_id)));
-
         if ($this->content !== null) {
             return $this->content;
         }
@@ -69,14 +69,13 @@ class block_skype_web extends block_base
         $this->content->text = '';
         $this->content->text = '<div class="conference">';
         $this->content->text .= '<h2>Conferance</h2><h3 style="margin-left: 20px">Skype Status : <span id="skype_status"></span></h3>';
-        $this->content->text .= '<div class="conversation" style="padding: 10px 0px 10px 10px"><div id="startNewVideoMeeting" class="button">Start a new video meeting</div><br>';
-        $this->content->text .= '<br><input id="newMeetingUri" class="input" placeholder="Meeting URI" />';
-        $this->content->text .= '<div class="">';
+        $this->content->text .= '<div class="conversation" style="padding: 10px 0px 10px 10px;display: none" id="new_meeting"><div id="startNewVideoMeeting" class="button">Start a new video meeting</div><br>';
+        $this->content->text .= '<h3 id="starting" style="display: none">Starting new meeting...</h3><br><div id="meeting" style="display: none"><input id="newMeetingUri" class="input" placeholder="Meeting URI" />';
         $this->content->text .= '<div class="add-p-container">';
-        $this->content->text .= '<br><input type="text" id="txt-contact" placeholder="sip:someone@example.com" />';
+        $this->content->text .= '<br>Add Participants: <br><input type="text" id="txt-contact" placeholder="sip:someone@example.com" />';
         $this->content->text .= '<button id="btn-add-participant">Add</button><br>';
-        $this->content->text .= '<h4>Participants</h4><ul id="participants"></ul></div></div></div>';
-        $this->content->text .= '<div class="conversation"><div class="header"><h3>Self Camera</h3></div>';
+        $this->content->text .= '<h4>Participants :</h4><ul id="participants"></ul></div></div></div>';
+        $this->content->text .= '<div class="conversation" style="display: none" id="self_video"><div class="header"><h3>Self Camera</h3></div>';
         $this->content->text .= '<div id="av-self" class="av-container"><div id="previewWindow" class="render-window"></div></div></div></div>';
 
         $this->content->footer = '';

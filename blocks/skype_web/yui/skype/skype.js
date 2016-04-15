@@ -25,6 +25,9 @@ YUI.add('moodle-block_skype_web-skype', function (Y) {
                     console.log(state);
                     skype_div.innerHTML = state;
                     skype_state = state;
+                    if (state == 'SignedIn') {
+                        document.getElementById('new_meeting').style.display = 'block';
+                    }
                 });
 
                 var params =
@@ -50,12 +53,13 @@ YUI.add('moodle-block_skype_web-skype', function (Y) {
                         conv = client.conversationsManager.createConversation();
                         console.log(conv);
                         document.getElementById('newMeetingUri').value = '';
+                        document.getElementById('starting').style.display = 'block';
                         dfd = conv.videoService.start().then(function () {
                             meetingUri = conv.uri();
                             console.log(meetingUri);
                             document.getElementById('newMeetingUri').value = meetingUri;
-                            document.getElementsByClassName('c-add-p-container')[0].className = '';
-                            document.getElementsByClassName('c-add-p-container')[0].className = 'c-add-p-container';
+                            document.getElementById('meeting').style.display = 'block';
+                            document.getElementById('starting').style.display = 'none';
                         });
                         console.log(dfd);
                     };
@@ -80,38 +84,7 @@ YUI.add('moodle-block_skype_web-skype', function (Y) {
                                     var li = document.createElement('li');
                                     li.innerHTML = displayName
                                     document.getElementById('participants').appendChild(li);
-                                    var conversation = document.createElement('div');
-                                    conversation.className = 'conversation';
-                                    conversation.style.textAlign = 'center';
-
-                                    var header = document.createElement('div');
-                                    header.className = 'header';
-
-                                    var h3 = document.createElement('h3');
-                                    h3.innerHTML = displayName;
-
-                                    var av_container = document.createElement('div');
-                                    av_container.className = 'av-container';
-                                    var render_window = document.createElement('div');
-                                    render_window.className = 'render-window';
-                                    render_window.id = 'showRemoteVideoInMeeting';
-
-                                    var show_video_btn = document.createElement('div');
-                                    show_video_btn.innerHTML = 'Show Remote Video';
-                                    show_video_btn.className = 'button show_remote_vdo';
-                                    show_video_btn.id = 'showRemoteVideoInMeeting';
-                                    show_video_btn.setAttribute('rel', 'render_' + displayName.split(' ').join('_'));
-
-                                    av_container.appendChild(render_window);
-                                    header.appendChild(h3);
-
-                                    conversation.appendChild(show_video_btn)
-                                    conversation.appendChild(header);
-                                    conversation.appendChild(av_container);
-
-                                    document.getElementsByClassName('conference')[0].appendChild(conversation);
                                     dfd = addParticipant(conv, uri);
-
                                 });
                             }).then(null, function (error) {
                                 // if either of the steps above threw an exception,
@@ -121,26 +94,6 @@ YUI.add('moodle-block_skype_web-skype', function (Y) {
                         }
                     };
 
-                    // document.querySelector('body').removeListener('click', function () {});
-
-                    document.querySelector('body').addEventListener('click', function(event) {
-                        console.log(event.target.id);
-                        if (event.target.id == 'showRemoteVideoInMeeting') {
-                            var conv, channel, dfd;
-                            if (client.conversationsManager.conversations.size() == 1) {
-                                conv = client.conversationsManager.conversations(0);
-                                console.log(conv.participants(0));
-                                for (var participant in conv.participants) {
-                                    if (participant.person.displayName == event.target.rel) {
-                                        channel = participant.video.channels(0);
-                                        console.log(channel.stream.source.sink.container(document.getElementById('renderWindow')));
-                                        dfd = channel.isStarted.set(true);
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    });
                     client.conversationsManager.conversations.get().then(function (conversationsArray) {
                         if (conversationsArray && conversationsArray.length > 0) {
                             conversationsArray.forEach(function (element, index, array) {
@@ -172,8 +125,41 @@ YUI.add('moodle-block_skype_web-skype', function (Y) {
                         conversation.participants.added(function (p) {
                             p.video.state.changed(function (newState, reason, oldState) {
                                 // a convenient place to set the video stream container
-                                if (newState == 'Connected')
-                                    p.video.channels(0).stream.source.sink.container(document.getElementById("renderWindow"));
+                                console.log(newState);
+                                if (newState == 'Connected'){
+                                    p.person.displayName.get().then(function (displayName) {
+                                        console.log(displayName);
+                                        var conversation = document.createElement('div');
+                                        conversation.className = 'conversation';
+                                        conversation.style.textAlign = 'center';
+
+                                        var header = document.createElement('div');
+                                        header.className = 'header';
+
+                                        var h3 = document.createElement('h3');
+                                        h3.innerHTML = displayName;
+
+                                        var av_container = document.createElement('div');
+                                        av_container.className = 'av-container';
+                                        var render_window = document.createElement('div');
+                                        render_window.className = 'render-window';
+                                        render_window.id = displayName.split(' ').join('_');
+
+                                        av_container.appendChild(render_window);
+                                        header.appendChild(h3);
+
+                                        conversation.appendChild(header);
+                                        conversation.appendChild(av_container);
+
+                                        document.getElementsByClassName('conference')[0].appendChild(conversation);
+                                        var channel = p.video.channels(0);
+                                        channel.stream.source.sink.container(document.getElementById(displayName.split(' ').join('_')));
+                                        var dfd = channel.isStarted.set(true);
+                                        console.log(document.getElementById(displayName.split(' ').join('_')));
+                                        console.log(dfd);
+                                    });
+
+                                }
                             });
                             p.audio.state.changed(function (newState, reason, oldState) {
                                 //onChanged('_participant.audio.state', newState, reason, oldState);
@@ -229,6 +215,8 @@ YUI.add('moodle-block_skype_web-skype', function (Y) {
                             else if (newState == 'Connected') {
                                 selfChannel = conversation.selfParticipant.video.channels(0);
                                 selfChannel.stream.source.sink.container.set(document.getElementById("previewWindow"));
+                                console.log(document.getElementById("self_video"));
+                                document.getElementById("self_video").style.display = 'block';
                             }
                         });
                         conversation.state.changed(function onDisconnect(state) {
