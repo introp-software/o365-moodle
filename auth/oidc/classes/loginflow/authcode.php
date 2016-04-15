@@ -87,6 +87,7 @@ class authcode extends \auth_oidc\loginflow\base {
             if ($justauth === true) {
                 $stateparams['justauth'] = true;
             }
+            $extraparams['redirect_uri'] = get_config('auth_oidc', 'redirecturi');
             $this->initiateauthrequest($promptlogin, $stateparams, $extraparams);
         }
     }
