@@ -70,6 +70,7 @@ class authcode extends \auth_oidc\loginflow\base {
      * @return mixed Determined by loginflow.
      */
     public function handleredirect() {
+        global $CFG;
         $state = optional_param('state', '', PARAM_RAW);
         $promptlogin = (bool)optional_param('promptlogin', 0, PARAM_BOOL);
         $promptaconsent = (bool)optional_param('promptaconsent', 0, PARAM_BOOL);
@@ -87,7 +88,9 @@ class authcode extends \auth_oidc\loginflow\base {
             if ($justauth === true) {
                 $stateparams['justauth'] = true;
             }
-            $extraparams['redirect_uri'] = get_config('auth_oidc', 'redirecturi');
+            $redirecturi = (!empty($CFG->loginhttps)) ? str_replace('http://', 'https://', $CFG->wwwroot) : $CFG->wwwroot;
+            $redirecturi .= '/auth/oidc/';
+            $extraparams['redirect_uri'] = $redirecturi;
             $this->initiateauthrequest($promptlogin, $stateparams, $extraparams);
         }
     }
