@@ -9,23 +9,23 @@ Azure Setting
    
    c) After creating the Directory, it will appear in list in the “Directory” tab.
 
-* Open created Azure Active directory
-* At top of the page, click on "Application" link
+* Open created Azure Active directory.
+* At top of the page, click on "Application" link.
 * Click on "Add" button at the bottom of the page to add application and choose "Add an application to my organization is developing".
-* Create an application with name "Moodle" for ex. "TestMoodle"
+* Create an application with name "Moodle" for ex. "TestMoodle".
 * Choose “Web application and/or web api”. 
   
-   a) For Sign-On url, add the following (Very Important to add “/” at ending) and ensure whether its HTTP or HTTPS (that will depend on the client site): Ex:- https://insert_moodle_url/auth/oidc/
+   a) For Sign-On url, add the following (Very Important to add “/” at ending) and ensure whether its HTTP or HTTPS (that will depend on the client site): Ex:- https://insert_moodle_url/auth/oidc/.
 
-   b)For the App ID URL, if the client is using site wide SSL, then make it: https, otherwise, keep it as it is
+   b) For the App ID URL, if the client is using site wide SSL, then make it: https, otherwise, keep it as it is.
 
-*	Click on created Active Directory and then click on “Configure” link  
+*	Click on created Active Directory and then click on “Configure” link.
 
   ####* Name and Sign-On URL:
   
   It should be already there.
 
-  ####* Logo: -
+  ####* Logo:
  
   You can add logo, which will show up to the user in their app area.
 
@@ -45,17 +45,17 @@ Azure Setting
       
   The recommendation is to set this to 2 years and remember that after 2 years you have to change key again.
   
-  ####App ID URL:
+  ####* App ID URL:
   
   This is your application URL. It is already populated.
 
-  ####Reply URL: 
+  ####* Reply URL: 
 
   Make it the same as the sign-on URL, and remember the ending “/”. For Ex.- https://insert_client_Moodle_url/auth/oidc/.
 
 * Click on Save button, and you will see the “Key” get populated, Copied that key and paste it in Moodle GUI i.e.( Site Administration > Plugin > Authentication > OpenID Connect > ).
 
-* Click on “Add Application” at bottom of the page. Need to add:-
+* Click on “Add Application” at bottom of the page. Need to add:
 
   *	Office 365 SharePoint online.
   * Office 365 Exchange online.
@@ -79,41 +79,41 @@ Azure Setting
    
     * Delegated permissions (2):
     
-      * Read user calendars
-      * Read and write user calendars
+      * Read user calendars.
+      * Read and write user calendars.
       
   * Office 365 SharePoint Online -  http://screencast.com/t/TqsOARbUmEbb
     
     *	Delegated permissions (6):
 
-      * Read items in all site collections
-      * Read and write items in all site collections
-      * Read and write items and lists in all site collections
-      * Have full control of all site collections
-      * Read user files
-      * Read and write user files
+      * Read items in all site collections.
+      * Read and write items in all site collections.
+      * Read and write items and lists in all site collections.
+      * Have full control of all site collections.
+      * Read user files.
+      * Read and write user files.
       
   * OneNote
   
     * Delegated permissions (3): 
     
-      * Create Pages in OneNote notebooks
-      * View OneNote notebooks
-      * View and Modify OneNote notebooks
+      * Create Pages in OneNote notebooks.
+      * View OneNote notebooks.
+      * View and Modify OneNote notebooks.
       
   * Microsoft Graph - http://screencast.com/t/v42AM6tR
   
     * Delegated Permissions (9)
     
-      * Have full access to user calendars
-      * Access directory as the signed in user
-      * Read and write directory data
-      * Have full access to user files 
-      * Read and write all groups
-      * Read and write notebooks that the user can access (preview)
-      * Read items in all site collections
-      * Read and write all users full profiles
-      * Sign users in
+      * Have full access to user calendars.
+      * Access directory as the signed in user.
+      * Read and write directory data.
+      * Have full access to user files. 
+      * Read and write all groups.
+      * Read and write notebooks that the user can access (preview).
+      * Read items in all site collections.
+      * Read and write all users full profiles.
+      * Sign users in.
       
 
 
