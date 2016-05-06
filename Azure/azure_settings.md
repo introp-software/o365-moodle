@@ -35,7 +35,7 @@ Azure Setting
 
   ####*	Client ID:
   
-  It is already populated. You should use this is in Moodle GUI i.e. in Moodle (Site Administration > Plugin > Authentication > OpenID Connect).
+  It is already populated. You should use this is in Moodle GUI i.e. in Moodle (Site Administration > Plugin > Authentication > OpenID Connect > ClientID).
   
   ####* User assignment required to access app:
       
@@ -53,11 +53,11 @@ Azure Setting
 
   Make it the same as the sign-on URL, and remember the ending “/”. For Ex.- https://insert_client_Moodle_url/auth/oidc/.
 
-* Click on Save button, and you will see the “Key” get populated, Copied that key and paste it in Moodle GUI i.e.( Site Administration > Plugin > Authentication > OpenID Connect > ).
+* Click on Save button, and you will see the “Key” get populated, Copied that key and paste it in Moodle GUI i.e.( Site Administration > Plugin > Authentication > OpenID Connect > Client Secret).
 
 * Click on “Add Application” at bottom of the page. Need to add:
 
-  *	Office 365 SharePoint online.
+  *   Office 365 SharePoint online.
   * Office 365 Exchange online.
   * OneNote may or may not be there by default. If not, OneNote (TO GET ONENOTE TO SHOW UP, the O365Admin must go to     portal.office.com, sign in with School Account or work account and click on OneNote, and it sign that user into OneNote, and when you go back to “Add Application” OneNote should be there).
   * Microsoft Graph.
