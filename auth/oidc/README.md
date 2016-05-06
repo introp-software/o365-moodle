@@ -19,10 +19,12 @@ This repository is updated with stable releases. To follow active development, s
 
 ## Settings:-
 
-1. Provider Name:
-    The name entered here will be used through the OpenID Connect plugin and the Office 365 plugins to refer to the system used tolog users in. For example, if your users are used to calling their Azure AD account their "School" account, you enter "School account" here, and all references to authentication will be "Log in with your School account".
+#### Provider Name:-
 
-2. Client ID:
+  The name entered here will be used through the OpenID Connect plugin and the Office 365 plugins to refer to the system used tolog users in. For example, if your users are used to calling their Azure AD account their "School" account, you enter "School account" here, and all references to authentication will be "Log in with your School account".
+
+#### Client ID:
+
 	  Add the Client ID from Azure, how to get this Client ID Refer Azure_Moodle Setting doc.
 
 3. Client Secret:
