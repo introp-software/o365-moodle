@@ -1,22 +1,25 @@
 Azure Setting
 ====================================
 
-*If you don't have create Azure Active directory, follow steps to create Azure Active directory
+*If you don't have Azure Active directory, follow steps to create Azure Active directory
 
-  *	Go to this URL https://Manage.windowsazure.com and login using Microsoft account.
-  * Go to left corner of the page and click on “Active Directory” then click on “+ New ” button and in the 3rd column from the left click “Directory” & “Custom Create”.
-  * After creating the Directory, it will appear in list in the “Directory” tab.
+   a) Go to this URL https://Manage.windowsazure.com and login using Microsoft account.
+   
+   b) Go to left corner of the page and click on “Active Directory” then click on “+ New ” button and in the 3rd column from the left click “Directory” & “Custom Create”.
+   
+   c) After creating the Directory, it will appear in list in the “Directory” tab.
 
-* Once you created Azure Active directory, or you have already created directory, click on that directory
+* Open created Azure Active directory
 * At top of the page, click on "Application" link
 * Click on "Add" button at the bottom of the page to add application and choose "Add an application to my organization is developing".
 * Create an application with name "Moodle" for ex. "TestMoodle"
 * Choose “Web application and/or web api”. 
   
-  * For Sign-On url, add the following (Very Important to add “/” at ending) and ensure whether its HTTP or HTTPS (that will depend on the client site): Ex:- https://insert_moodle_url/auth/oidc/
-  * For the App ID URL, if the client is using site wide SSL, then make it: https, otherwise, keep it as it is
+   a) For Sign-On url, add the following (Very Important to add “/” at ending) and ensure whether its HTTP or HTTPS (that will depend on the client site): Ex:- https://insert_moodle_url/auth/oidc/
 
-*	Click on created Active Directory and click on “Configure” link  
+   b)For the App ID URL, if the client is using site wide SSL, then make it: https, otherwise, keep it as it is
+
+*	Click on created Active Directory and then click on “Configure” link  
 
   ####* Name and Sign-On URL:
   
