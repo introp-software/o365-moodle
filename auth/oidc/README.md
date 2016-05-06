@@ -15,6 +15,13 @@ This repository is updated with stable releases. To follow active development, s
 2. From the Moodle Administration block, expand Site Administration and click "Notifications".
 3. Follow the on-screen instuctions to install the plugin.
 4. To configure the plugin, from the Moodle Administration block, go to Site Administration > Plugins > Authentication > Manage Authentication.
+5. Enable OpenID Connect and click on "Setting" to configure OpenID connection.
+
+# Settings:-
+
+1. Provider Name: - 
+      The name entered here will be used through the OpenID Connect plugin and the Office 365 plugins to refer to the system used to log users in. For example, if your users are used to calling their Azure AD account their "School" account, you enter "School account" here, and all references to authentication will be "Log in with your School account".
+
 5. Click the icon to enable the plugin, then visit the settings page to configure the plugin. Follow the directions below each setting.
 
 For more documentation, visit https://docs.moodle.org/30/en/Office365
