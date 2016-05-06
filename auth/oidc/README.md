@@ -19,7 +19,7 @@ This repository is updated with stable releases. To follow active development, s
 
 ## Settings:-
 
-1. Provider Name: - 
+####1. Provider Name: - 
       The name entered here will be used through the OpenID Connect plugin and the Office 365 plugins to refer to the system used to log users in. For example, if your users are used to calling their Azure AD account their "School" account, you enter "School account" here, and all references to authentication will be "Log in with your School account".
 
 2. Client ID:
