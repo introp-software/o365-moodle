@@ -44,7 +44,7 @@ The values should be:
 
 It is already pre-populated. 
 
-EXPLANATION:
+Explanation:
 
 The OpenID Connect Sign-in request has to specify a resource parameter. This specifies the protected resource that you’re needing to access as part of the sign-in request. Graph.windows.net is Microsoft Azure AD graph. This lets Moodle go and get things such as first name, last name, etc. in Azure AD.
 
