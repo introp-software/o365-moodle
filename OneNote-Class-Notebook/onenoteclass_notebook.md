@@ -2,8 +2,6 @@
 
 ## Setting up OneNote Class Notebook With Moodle
 
-### Connect your LMS
-
 ### Connect your LMS to OnetNote 
   
   * Download Class Notebook Add-in from this URL "https://www.onenote.com/classnotebook".
@@ -37,7 +35,7 @@
   
   * To review assignment which are submitted by student, click on "Review Student Note".
   * You can see "Review Student Work" on left hand side.
-  * Checked on Enter grade check box.
+  * Checked on "Enter grades" check box.
   * Expand assignment, you can see multiple student name.
   * As you select student, you can see assignment. score assignment and click on submit button.
   * Now you can see that score at Moodle side also.
