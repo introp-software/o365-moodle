@@ -1,11 +1,11 @@
-## OneNote Class Notebook
+# OneNote Class Notebook
 
 ## Setting up OneNote Class Notebook With Moodle
 -------------------------------------------------
 
 ### Connect your LMS
 
-  #### 1St Step Connect your LMS to OnetNote 
+  ### 1St Step Connect your LMS to OnetNote 
   
     * Download Class Notebook Add-in from this URL "https://www.onenote.com/classnotebook".
     * Install Class Notebook Add-in
@@ -19,11 +19,11 @@
     * Click on Sigin button.
     * You can also view Video "How to connect to Moodle".
   
-  #### 2nd Step Map your Class Notebook
+  ### 2nd Step Map your Class Notebook
     
     * Click on Connection, Click on "Map Class Notebook", here you can map Class Notebook with Moodle Course.
     
-  #### 3rd Step Create Assignment
+  ### 3rd Step Create Assignment
   
     * To create assignment, first of you have to create Class Notebook.
     * To create Class Notebook, click on create Class Notebook in OneNote.
@@ -31,7 +31,7 @@
     * Now click on Create Assignment.
     * Once you create assignment, you can see that assignment in Moodle.
     
-  #### 4th Step Review and Submit grades
+  ### 4th Step Review and Submit grades
   
     * To review grade assignment which are submitted by student, click on "Review Student Note".
     * You can see "Review Student Work" on left hand side.
