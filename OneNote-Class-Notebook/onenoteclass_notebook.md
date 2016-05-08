@@ -1,7 +1,7 @@
 # OneNote Class Notebook
 
 ## Setting up OneNote Class Notebook With Moodle
--------------------------------------------------
+
 
 ### Connect your LMS
 
