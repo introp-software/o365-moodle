@@ -14,9 +14,9 @@
   * Select your LMS from dropdown
   * Add Moodle URL in Address textbox
   * Paste token from Moodle (Site Admin-> Plugins -> WebService -> Manage Token).
-  * If you not generate token, please refer URL
+  * If you have not generate any token, please refer URL for how to generate token in Moodle
   
-  "https://github.com/Microsoft/o365-moodle/blob/wip-MSFTMPP-326-m30/local/o365docs/onenotewebservices.md" for how to generate token.
+  "https://github.com/Microsoft/o365-moodle/blob/wip-MSFTMPP-326-m30/local/o365docs/onenotewebservices.md" 
   
   * Click on Sigin button.
   * You can also view Video "How to connect to Moodle".
