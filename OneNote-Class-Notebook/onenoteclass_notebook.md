@@ -2,7 +2,6 @@
 
 ## Setting up OneNote Class Notebook With Moodle
 
-
 ### Connect your LMS
 
 ### Connect your LMS to OnetNote 
@@ -36,7 +35,7 @@
     
 ### Review and Submit grades
   
-  * To review grade assignment which are submitted by student, click on "Review Student Note".
+  * To review assignment which are submitted by student, click on "Review Student Note".
   * You can see "Review Student Work" on left hand side.
   * Checked on Enter grade check box.
   * Expand assignment, you can see multiple student name.
