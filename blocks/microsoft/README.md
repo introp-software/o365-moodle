@@ -16,7 +16,6 @@ This repository is updated with stable releases. To follow active development, s
 3. Follow the on-screen instuctions to install the plugin.
 4. Add the block to any page you want it displayed.
 
-For more documentation, visit https://docs.moodle.org/30/en/Office365
 
 To Enable "Microsoft Block" in Moodle
 
@@ -24,6 +23,9 @@ To Enable "Microsoft Block" in Moodle
   * Enable Microsoft Block.
   * As an admin, add Microsoft Block to all pages in your Moodle site.
   * You can choose what links you want to appear in the Microsoft Block by going to Site Admin > Plugins > Blocks > Microsoft Block.
+  
+  
+For more documentation, visit https://docs.moodle.org/30/en/Office365
 
 # Contributing
 
