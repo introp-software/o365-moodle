@@ -11,7 +11,8 @@ Login as an admin on the Moodle site and install the filter.
 To use:
 By default the oembed filter is enabled for all content.  You can change this under Plugins > Filters.
 
-This filter allows users to embed documents from various online sources to be embedded into Moodle content. The user only has to enter the URL to the document and the filter takes care of converting the URL into an embeddable IFRAME. 
+This filter allows users to embed documents from various online sources to be embedded into Moodle content. 
+The user only has to enter the URL to the document and the filter takes care of converting the URL into an embeddable IFRAME. 
 
 When inserting a media link url into a discussion, create a hyperlink and insert the url as the target.
 When the discussion is posted the url will be changed into the embed content.
