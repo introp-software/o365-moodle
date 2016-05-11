@@ -15,7 +15,7 @@ This repository is updated with stable releases. To follow active development, s
 2. From the Moodle Administration block, expand Site Administration and click "Notifications".
 3. Follow the on-screen instuctions to install the plugin.
 4. Add the block to any page you want it displayed.
-  
+
 For more documentation, visit https://docs.moodle.org/30/en/Office365
 
 # Contributing
