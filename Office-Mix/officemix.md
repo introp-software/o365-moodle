@@ -57,7 +57,7 @@ Now that Office Mix has been configured, follow these [instructions](#Instructio
   * Click Add.
   * In the General settings:
   * In the Activity name box, type a name for your activity.
-  * Select Office Mix from the External tool type list. See [Add External Tool](#Add-External-tool).
+  * Select Office Mix from the External tool type list. See [Add External Tool](#add-external-tool).
   * Set your Privacy and Grade settings.
   * Click Save and display. At this point, you should see a placeholder for your activity.
   * In the embedded activity, use one of these methods to select a mix:
