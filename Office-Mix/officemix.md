@@ -36,9 +36,10 @@ To install Office Mix in Moodle:
 
   * Configure the Privacy settings.
     
-    * Note: Sending the Name of the user will allow Office Mix to display rich analytics and question responses. 
-    If you do not send any user information, then Office Mix will not be able restore a student's answers 
-    if they view the content on a subsequent visit.
+  Note: Sending the Name of the user will allow Office Mix to display rich analytics and question responses. 
+  If you do not send any user information, then Office Mix will not be able restore a student's answers 
+  if they view the content on a subsequent visit.
+
   * Click Save changes.
   
 Now that Office Mix has been configured, follow these [instructions](#instruction-for-moodle) to embed a mix.  
