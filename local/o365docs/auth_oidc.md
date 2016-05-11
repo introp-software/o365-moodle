@@ -17,6 +17,41 @@ There are a number of options you can use to customize how the plugin behaves. T
 
 The name entered here will be used through the OpenID Connect plugin and the Office 365 plugins to refer to the system used to log users in. For example, if your users are used to calling their Azure AD account their "School" account, you enter "School account" here, and all references to authentication will be "Log in with your School account".
 
+#### Client ID:
+
+Add the Client ID from Azure, how to get this Client ID Refer Azure_Moodle Setting doc.
+
+### Client Secret:
+
+Add the client secret (which is the 2-year key) from the Azure “Moodle” application settings Refer Azure_Moodle Setting doc.
+      
+### Authorization Endpoint and Token Endpoint: 
+
+Provided by Microsoft – Use the Default Auth Endpoint and Token Endpoint. 
+
+The values should be:
+
+* For Authorization Endpoint :- https://login.microsoftonline.com/common/oauth2/authorize.
+* For Token Endpoint :- https://login.microsoftonline.com/common/oauth2/token.
+
+### Resource:
+
+It is already pre-populated. 
+
+Explanation:
+
+The OpenID Connect Sign-in request has to specify a resource parameter. This specifies the protected resource that you’re needing to access as part of the sign-in request. Graph.windows.net is Microsoft Azure AD graph. This lets Moodle go and get things such as first name, last name, etc. in Azure AD.
+
+### Redirect URI:
+
+It is already pre-populated.
+
+Explanation: 
+
+This is the URI to register as the "Redirect URI". Your OpenID Connect identity provider should ask for this when registering Moodle as a client. 
+
+NOTE: You must enter this in your OpenID Connect provider exactly as it appears here. Any difference will prevent logins using OpenID Connect.	
+
 #### Auto-Append
 
 When using the "Username/Password" login flow, this setting with automatically append a given string to an entered username. This is useful in Azure AD usernames, where a single domain name is often used for every user - i.e. [user]@contoso.onmicrosoft.com. Users would normally have to enter this entire username to successfully log in to Moodle, but in this example, entering "@contoso.onmicrosoft.com" here means users would only have to enter their unique username, i.e. "bob.smith", instead of "bob.smith@contoso.onmicrosoft.com".
