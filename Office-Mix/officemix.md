@@ -41,7 +41,7 @@ To install Office Mix in Moodle:
     if they view the content on a subsequent visit.
   * Click Save changes.
   
-Now that Office Mix has been configured, follow these [instructions](#Instruction) to embed a mix.  
+Now that Office Mix has been configured, follow these [instructions](#instruction-for-moodle) to embed a mix.  
 
 
 
