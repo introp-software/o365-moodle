@@ -7,6 +7,7 @@ First register your LMS with Office Mix website, if it is not registered
   * Go to https://mix.office.com/lti/.
   * Click Register an LMS.
   * If you are not already signed in, sign in with an Office Mix account/ Microsoft account. 
+  
   Note: Most often, you'll want to sign in with a work or school account. If you haven't used Office Mix before, 
   you can create a new account.
   * Type a name to describe your LMS. If you have more than one LMS or Production/Stage instances, 
@@ -40,7 +41,10 @@ To install Office Mix in Moodle:
     if they view the content on a subsequent visit.
   * Click Save changes.
   
-Now that Office Mix has been configured, follow these [instructions](#Instruction-For-Moodle) to embed a mix.  
+Now that Office Mix has been configured, follow these [instructions](#Instruction) to embed a mix.  
+
+
+
   
   
 ## Instruction For Moodle
@@ -53,7 +57,7 @@ Now that Office Mix has been configured, follow these [instructions](#Instructio
   * Click Add.
   * In the General settings:
   * In the Activity name box, type a name for your activity.
-  * Select Office Mix from the External tool type list. See [How to add External Tool](#Add-External-tool).
+  * Select Office Mix from the External tool type list. See [Add External Tool](#Add-External-tool).
   * Set your Privacy and Grade settings.
   * Click Save and display. At this point, you should see a placeholder for your activity.
   * In the embedded activity, use one of these methods to select a mix:
