@@ -70,4 +70,15 @@ Now that Office Mix has been configured, follow these [instructions](#instructio
     After you have selected a mix, click Yes to confirm that this is the mix you'd like to use.
     At this point, you should see the mix embedded within your course.
     
+ 
+Resources
+=========
+
+You can also refere Video URL for more information
+
+-   <https://mix.office.com/en-us/Lti/UsingMoodle>
+-   <https://mix.office.com/en-us/Lti/SetupMoodle>
+    
+    
+    
 
