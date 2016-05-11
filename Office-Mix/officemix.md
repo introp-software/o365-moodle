@@ -62,8 +62,11 @@ Now that Office Mix has been configured, follow these [instructions](#instructio
   * Set your Privacy and Grade settings.
   * Click Save and display. At this point, you should see a placeholder for your activity.
   * In the embedded activity, use one of these methods to select a mix:
+  
     By URL: A simple way to select a mix is to visit the Office Mix website, watch a mix, and copy/paste the URL in the dialog. This method makes it easy to include mixes that have been created by other people.
+
     My Mixes: Select a mix from your My Mixes page. In order to prevent students from having to sign in to view a mix, only those mixes with permissions set to Unlisted or Public are shown.
+    
     After you have selected a mix, click Yes to confirm that this is the mix you'd like to use.
     At this point, you should see the mix embedded within your course.
     
