@@ -7,9 +7,9 @@ This document describes how to create the settings needed in Azure for your Mood
    
 * If you haven't created an Azure Active directory, follow these steps to create it:
 
-   b) Click on “Active Directory” in the left column, then click on “+ New ” and then click “Directory” & “Custom Create”.
+   * Click on “Active Directory” in the left column, then click on “+ New ” and then click “Directory” & “Custom Create”.
    
-   c) After creating the Directory, it will appear in the list when you select “Active Directory”.
+   * After creating the Directory, it will appear in the list when you select “Active Directory”.
 
 * Click on the Active directory you created.
 * At top of the page, click on "Application" link.
@@ -23,19 +23,13 @@ This document describes how to create the settings needed in Azure for your Mood
 
 * Click on the created application and then click on the “Configure” tab. The following steps describe the settings that need to be changed. The rest are optional.
 
-    * Application is Multi-Tenant:
+    * Application is Multi-Tenant: Depending upon whether your site is intended to be single tenant or multiple tenants, you may choose Yes or No. 
 
-      Depending upon whether your site is intended to be single tenant or multiple tenants, you may choose Yes or No. 
-
-    * Client ID:
+    * Client ID: This will be populated already. Note this down and use it when setting up the OIDC authentication plugin for your Moodle installation.
   
-      This will be populated already. Note this down and use it when setting up the OIDC authentication plugin for your Moodle installation.
+    * Keys: Select the duration for your secret key depending upon your requirements. The key will be created when you save this page.
   
-    * Keys:
-      
-      Select the duration for your secret key depending upon your requirements. The key will be created when you save this page.
-  
-* Click on Save button, and you will see the “Key” get populated. You will need to note it down at that time and use it when setting up the OIDC authentication plugin for your Moodle installation.
+* Click Save at the bottom of the page, and you will see the “Key” get populated. You will need to note it down at that time and use it when setting up the OIDC authentication plugin for your Moodle installation.
 
 * Click on “Add Application” at bottom of the page.
 
