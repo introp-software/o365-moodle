@@ -1,5 +1,5 @@
-Instructions for setting up Office Mix as an LTI provider
-=========================================================
+Instructions for setting up Office Mix as an External Tool
+==========================================================
 
 Register your Moodle installation with Office Mix
 -------------------------------------------------
@@ -58,11 +58,10 @@ Embedding a Mix into course content
   * After you have selected a mix, click Yes to confirm that this is the mix you'd like to use.
   * At this point, you should see the mix embedded within your course.
     
- 
 Additional Resources
 ====================
 
-You can also refer to these Office Mixes for more information
+You may also refer to these Office Mixes for more information
 
   * <https://mix.office.com/en-us/Lti/UsingMoodle>
   * <https://mix.office.com/en-us/Lti/SetupMoodle>
