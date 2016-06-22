@@ -177,6 +177,19 @@ class main {
             $subject = $course->fullname . ': ' . $subject;
         }
 
+		// Update event description
+        if (isset($event->courseid) && $event->courseid == SITEID) {
+            $moodleeventurl = $_SERVER['HTTP_ORIGIN'] . '/calendar/view.php?view=day&time='
+                    . $timestart . '#event_' . $moodleventid;
+        } else if (isset($event->courseid) && $event->courseid != SITEID && $event->courseid > 0) {
+            $moodleeventurl = $_SERVER['HTTP_ORIGIN'] . '/calendar/view.php?course=' . $event->courseid . '&view=day&time='
+                    . $timestart . '#event_' . $moodleventid;
+        }  else {
+            $moodleeventurl = $_SERVER['HTTP_ORIGIN'] . '/calendar/view.php?view=day&time='
+                    . $timestart . '#event_' . $moodleventid;
+        }
+        $body .= get_string('calendar_event', 'local_o365') . ' ' . $moodleeventurl;
+
         // Get attendees.
         if (isset($event->courseid) && $event->courseid == SITEID) {
             // Site event.
@@ -393,6 +406,19 @@ class main {
             $course = $DB->get_record('course', ['id' => $event->courseid]);
             $updated['subject'] = $course->fullname . ': ' . $updated['subject'];
         }
+
+		// Update event description
+        if (isset($event->courseid) && $event->courseid == SITEID) {
+            $moodleeventurl = $_SERVER['HTTP_ORIGIN'] . '/calendar/view.php?view=day&time='
+                    . $updated['starttime'] . '#event_' . $moodleeventid;
+        } else if (isset($event->courseid) && $event->courseid != SITEID && $event->courseid > 0) {
+            $moodleeventurl = $_SERVER['HTTP_ORIGIN'] . '/calendar/view.php?course=' . $event->courseid .
+                    '&view=day&time=' . $updated['starttime'] . '#event_' . $moodleeventid;
+        }  else {
+            $moodleeventurl = $_SERVER['HTTP_ORIGIN'] . '/calendar/view.php?view=day&time='
+                    . $updated['starttime'] . '#event_' . $moodleeventid;
+        }
+        $updated['body'] .= get_string('calendar_event', 'local_o365') . ' ' . $moodleeventurl;
 
         foreach ($idmaprecs as $idmaprec) {
             $apiclient = $this->construct_calendar_api($idmaprec->userid);
