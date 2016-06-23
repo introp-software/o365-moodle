@@ -70,7 +70,8 @@ $string['calendar_setting'] = 'Enable Outlook Calendar Sync';
 $string['calendar_user'] = 'Personal (User) Calendar';
 $string['calendar_site'] = 'Sitewide Calendar';
 $string['personal_calendar'] = 'Personal';
-$string['calendar_event'] = 'Moodle event:';
+$string['calendar_event'] = 'Moodle event: ';
+$string['event_link'] = 'link';
 
 $string['groups'] = 'Office 365 Groups';
 $string['groups_edit_name'] = 'Group name';
