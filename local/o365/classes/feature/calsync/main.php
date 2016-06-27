@@ -158,7 +158,7 @@ class main {
      * @return bool Success/Failure.
      */
     public function create_outlook_event_from_moodle_event($moodleventid) {
-        global $DB, $SITE, $CFG;
+        global $DB, $SITE;
 
         // Assemble basic event data.
         $event = $DB->get_record('event', ['id' => $moodleventid]);
@@ -365,7 +365,7 @@ class main {
      * @return bool Success/Failure.
      */
     public function update_outlook_event($moodleeventid) {
-        global $DB, $SITE, $CFG;
+        global $DB, $SITE;
 
         // Get o365 event id (and determine if we can sync this event).
         $idmaprecs = $DB->get_records('local_o365_calidmap', ['eventid' => $moodleeventid]);
