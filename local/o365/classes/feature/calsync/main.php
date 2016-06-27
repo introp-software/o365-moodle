@@ -177,20 +177,7 @@ class main {
             $subject = $course->fullname . ': ' . $subject;
         }
 
-		// Update event description
-        if (isset($event->courseid) && $event->courseid == SITEID) {
-            $moodleeventurl = $CFG->wwwroot . '/calendar/view.php?view=day&time='
-                    . $timestart . '#event_' . $moodleventid;
-        } else if (isset($event->courseid) && $event->courseid != SITEID && $event->courseid > 0) {
-            $moodleeventurl = $CFG->wwwroot . '/calendar/view.php?course=' . $event->courseid . '&view=day&time='
-                    . $timestart . '#event_' . $moodleventid;
-        }  else {
-            $moodleeventurl = $CFG->wwwroot . '/calendar/view.php?view=day&time='
-                    . $timestart . '#event_' . $moodleventid;
-        }
-        $body .= '<p><span>' . get_string('calendar_event', 'local_o365')
-                . '<a href="' . $moodleeventurl . '">' . get_string('event_link', 'local_o365')
-                . '</a></span></p>';
+		$body .= $this->get_event_link_html($event);
 
         // Get attendees.
         if (isset($event->courseid) && $event->courseid == SITEID) {
@@ -409,20 +396,7 @@ class main {
             $updated['subject'] = $course->fullname . ': ' . $updated['subject'];
         }
 
-		// Update event description
-        if (isset($event->courseid) && $event->courseid == SITEID) {
-            $moodleeventurl = $CFG->wwwroot . '/calendar/view.php?view=day&time='
-                    . $updated['starttime'] . '#event_' . $moodleeventid;
-        } else if (isset($event->courseid) && $event->courseid != SITEID && $event->courseid > 0) {
-            $moodleeventurl = $CFG->wwwroot . '/calendar/view.php?course=' . $event->courseid .
-                    '&view=day&time=' . $updated['starttime'] . '#event_' . $moodleeventid;
-        }  else {
-            $moodleeventurl = $CFG->wwwroot . '/calendar/view.php?view=day&time='
-                    . $updated['starttime'] . '#event_' . $moodleeventid;
-        }
-        $updated['body'] .= '<p><span>' . get_string('calendar_event', 'local_o365')
-                           . '<a href="' . $moodleeventurl . '">' . get_string('event_link', 'local_o365')
-                           . '</a></span></p>';
+		$updated['body'] .= $this->get_event_link_html($event);
 
         foreach ($idmaprecs as $idmaprec) {
             $apiclient = $this->construct_calendar_api($idmaprec->userid);
@@ -527,5 +501,30 @@ class main {
         global $USER;
         $apiclient = $this->construct_calendar_api($USER->id, false);
         return $apiclient->update_calendar($outlookcalendearid, $updated);
+    }
+
+	/**
+     * Get Moodle event link and it's HTML.
+     *
+     * @param object $event The Moddle event database object.
+     * @return string Moodle event HTML with link.
+     */
+    public function get_event_link_html($event) {
+        global $CFG;
+
+        // Update event description
+        if (isset($event->courseid) && $event->courseid == SITEID) {
+            $moodleeventurl = $CFG->wwwroot . '/calendar/view.php?view=day&time='
+                    . $event->timestart . '#event_' . $event->id;
+        } else if (isset($event->courseid) && $event->courseid != SITEID && $event->courseid > 0) {
+            $moodleeventurl = $CFG->wwwroot . '/calendar/view.php?course=' . $event->courseid . '&view=day&time='
+                    . $event->timestart . '#event_' . $event->id;
+        }  else {
+            $moodleeventurl = $CFG->wwwroot . '/calendar/view.php?view=day&time='
+                    . $event->timestart . '#event_' . $event->id;
+        }
+
+        return '<br><p><span><a href="' . $moodleeventurl . '">' . get_string('calendar_event', 'local_o365')
+                . '</a></span></p>';
     }
 }
