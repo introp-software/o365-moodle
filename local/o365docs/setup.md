@@ -81,9 +81,9 @@ To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](http
 
 
 1.  Create a new Active Directory : Click on plus icon on left menu then search ‘Active Directory”/Click on **Security+Indentity >Active Directory.**
+![Locate Active Directory with creation options](images/ActiveDirectory.PNG "fig:Locate Active Directory dialog with creation options")
 
-
-
+![Add directory dialog with creation options](images/AddDirectory.PNG "fig:Add directory dialog with creation options")
 2.  Sign in with your Office 365 subscription credentials.
 3.  Click **Continue**.
 4.  Log out and sign back in to your Azure account.
@@ -96,37 +96,34 @@ To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](http
 
 
 1.  Sign in to the [Microsoft Azure Portal](https://portal.azure.com).
+
 2.  Click on the **Active Directory** icon on the left menu, and then click on **App registrations**. If no apps have been added to your directory, this page will only show the **Add** link.
-3. Ont the dialogue enter the Application **Name**,  select **Application Type** and **Sign-on URL** in the format- **<https://example.com/auth/oidc/>** then create application.
-4. Select created azure AD application and Modify **Reply URL**  and check Home page URL under  **Properties** section.
+![Create Application option](images/CreateApp1.PNG "fig: Create Application option")
 
+3.  On the dialogue enter the Application **Name**,  select **Application Type** and **Sign-on URL** in the format- **<https://example.com/auth/oidc/>** then create application.
+![Create application with details](images/CreateApp.PNG "fig:Create azure AD application dialog")
 
+4.  Select created azure AD application and Modify **Reply URL**  and check Home page URL under  **Properties** section.
+![Set Reply URL dialog ](images/ReplyURL.PNG "fig: Set Reply URL)
 
-
-
-
-
-5.  Click the checkbox in the bottom-right hand corner of the page and then click Ok to add your app to Azure Active Directory.
-6.  There are a couple more values and changes you need to make and write down some values which you will need in the next section.
+5.  There are a couple more values and changes you need to make and write down some values which you will need in the next section.
 
 
 ### Configure your Azure Active Directory Application
 
-
 1.  In Azure, click on the **Active Directory** icon on the left menu, and then click on the desired Azure AD.
 2. Locate **Application ID** note this value (write it down or copy it somewhere), and set it aside. You'll need it later as **Client ID** .
+![Highlighted application ID ](images/AppDetails.PNG "fig:Highlighted application ID )
 
 3. Under **API ACCESS** menu select key then enter the key name and save it. After copy the generated secret key and **save** somewhere as later you won’t be able to see it again.
-
-
-
-
+![Generate Secret Key for azure AD application](images/SecretKeyGen.PNG "fig:Generate Secret Key for azure AD application )
 
 4. Under **API ACCESS** menu select **Required Permissions** for Azure AD application and add permission mentioned.
-
-
+![Add Reuquired permissions for azure AD application](images/AddAPIAccess.PNG "fig:Add Reuquired permissions for azure AD application)
 
 5. Click **Add** button and add below mentioned permissions then save the changes.
+![Mark reuquired  application permissions for azure AD application](images/RequiredPermisions.PNG "fig:Mark reuquired application permissions for azure AD application)
+
 6. In the Delegated Permissions dropdown for Office 365 Exchange Online select the following permissions:
     1.  Read user calendars.
     2.  Read and write user calendars.
@@ -164,7 +161,7 @@ To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](http
     7. Read items in all site collections.
     8. Read and write all users full profiles.
     9. Sign users in.
-
+![Mark Application Permission for Microsoft Graph API](images/MarkPermission.png "fig:Mark Application Permission for Microsoft Graph API")
 
 11. In the Application Permissions dropdown for Windows Azure Active Directory select the following permissions:
     1.  Read directory data
