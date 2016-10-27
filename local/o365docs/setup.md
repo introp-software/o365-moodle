@@ -81,7 +81,7 @@ To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](http
 
 
 1.  Create a new Active Directory : Click on plus icon on left menu then search ‘Active Directory”/Click on **Security+Indentity>Active Directory**
-![Locate Active Directory with creation options](images/ActiveDirectory1.PNG "fig:Locate Active Directory dialog with creation options")
+![Locate Active Directory with creation options](images/ActiveDirectory1.png "fig:Locate Active Directory dialog with creation options")
 
 ![Add directory dialog with creation options](images/AddDirectory.PNG "fig:Add directory dialog with creation options")
 2.  Sign in with your Office 365 subscription credentials.
@@ -100,7 +100,8 @@ To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](http
 2.  Click on the **Active Directory** icon on the left menu, and then click on **App registrations**. If no apps have been added to your directory, this page will only show the **Add** link.
 ![Create Application option](images/CreateApp1.PNG "fig: Create Application option")
 
-3.  On the dialogue enter the Application **Name**,  select **Application Type** and **Sign-on URL** in the format- **<https://example.com/auth/oidc/>** then create application.
+3.  On the dialogue enter the Application **Name**,  select **Application Type** and **Sign-on URL** in the format **<https://example.com/auth/oidc/>** then create application.
+
 ![Create application with details](images/CreateApp.PNG "fig:Create azure AD application dialog")
 
 4.  Select created azure AD application and Modify **Reply URL**  and check Home page URL under  **Properties** section.
@@ -161,7 +162,8 @@ To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](http
     7. Read items in all site collections.
     8. Read and write all users full profiles.
     9. Sign users in.
-![Mark Application Permission for Microsoft Graph API](images/MarkPermission.png "fig:Mark Application Permission for Microsoft Graph API")
+    
+![Mark Application Permission for Microsoft Graph API](images/MarkPermission.PNG "fig:Mark Application Permission for Microsoft Graph API")
 
 11. In the Application Permissions dropdown for Windows Azure Active Directory select the following permissions:
     1.  Read directory data
