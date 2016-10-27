@@ -80,23 +80,13 @@ You will need an Azure subscription. If you do not have one, you can create one 
 To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](https://portal.azure.com) to manage your Office 365 Microsoft Azure Active Directory:
 
 
-1.  Create a new Active Directory : Click on plus icon on left menu then search ‘Active Directory”/Click on Security+Indentity >Active Directory.
-
-2.  Select Use existing directory.
+1.  Create a new Active Directory : Click on plus icon on left menu then search ‘Active Directory”/Click on **Security+Indentity >Active Directory.**
 
 
-![Add directory dialog with creation options](images/AddDirectory1.png "fig:Add directory dialog with creation options")
 
-
-3.  Select **I am ready to be signed out now** and click the check mark.
-
-
-![Add directory dialog log out option](images/AddDirectory2.png "fig:Add directory dialog log out option")
-
-
-4.  Sign in with your Office 365 subscription credentials.
-5.  Click **Continue**.
-6.  Log out and sign back in to your Azure account.
+2.  Sign in with your Office 365 subscription credentials.
+3.  Click **Continue**.
+4.  Log out and sign back in to your Azure account.
 
 
 **Note**: In order to sign-up for an Azure subscription, you are required to enter a credit card and phone number. If only use the subscription to access the Azure Active Directory associated with your Office 365 subscription and enable no other paid services such as Virtual Machines, you will not be charged for the subscription.
