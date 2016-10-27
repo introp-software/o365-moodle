@@ -101,8 +101,7 @@ To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](http
 ![Create Application option](images/CreateApp1.PNG "fig: Create Application option")
 
 3.  On the dialogue enter the Application **Name**,  select **Application Type** and **Sign-on URL** in the format **<https://example.com/auth/oidc/>** then create application.
-
-![Create application with details](images/CreateApp.PNG "fig:Create azure AD application dialog")
+![Create application with details ](images/CreateApp.PNG "fig:Create azure AD application dialog")
 
 4.  Select created azure AD application and Modify **Reply URL**  and check Home page URL under  **Properties** section.
 ![Set Reply URL dialog ](images/ReplyURL.PNG "fig: Set Reply URL)
