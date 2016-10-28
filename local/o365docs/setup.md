@@ -113,16 +113,16 @@ To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](http
 
 1.  In Azure, click on the **Active Directory** icon on the left menu, and then click on the desired Azure AD.
 2. Locate **Application ID** note this value (write it down or copy it somewhere), and set it aside. You'll need it later as **Client ID** .
-![Highlighted application ID ](images/AppDetails.PNG "fig:Highlighted application ID )
+![Highlighted application ID ](images/AppDetails.PNG "fig:Highlighted application ID" )
 
 3. Under **API ACCESS** menu select key then enter the key name and save it. After copy the generated secret key and **save** somewhere as later you won’t be able to see it again.
-![Generate Secret Key for azure AD application](images/SecretKeyGen.PNG "fig:Generate Secret Key for azure AD application )
+![Generate Secret Key for azure AD application](images/SecretKeyGen.PNG "fig:Generate Secret Key for azure AD application" )
 
 4. Under **API ACCESS** menu select **Required Permissions** for Azure AD application and add permission mentioned.
-![Add Reuquired permissions for azure AD application](images/AddAPIAccess.PNG "fig:Add Reuquired permissions for azure AD application)
+![Add Reuquired permissions for azure AD application](images/AddAPIAccess.PNG "fig:Add Reuquired permissions for azure AD application")
 
 5. Click **Add** button and add below mentioned permissions then save the changes.
-![Mark reuquired  application permissions for azure AD application](images/RequiredPermisions.PNG "fig:Mark reuquired application permissions for azure AD application)
+![Mark reuquired  application permissions for azure AD application](images/RequiredPermisions.PNG "fig:Mark reuquired application permissions for azure AD application")
 
 6. In the Delegated Permissions dropdown for Office 365 Exchange Online select the following permissions:
     1.  Read user calendars.
