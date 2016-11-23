@@ -301,24 +301,27 @@ abstract class o365api {
     public function get_required_permissions() {
         return [
             'Microsoft.Azure.ActiveDirectory' => [
-                'Directory.Read.All' => ['Directory.ReadWrite.All'],
-                'Directory.AccessAsUser.All' => [],
-                'User.Read.All' => ['User.ReadWrite.All'],
+                'Directory.ReadWrite.All' => 'Scope',
+                'Directory.AccessAsUser.All' => 'Scope',
+                'Directory.Read.All' => 'Scope',
+                'User.Read.All' => 'Scope',
             ],
             'Microsoft.SharePoint' => [
-                'AllSites.Read' => ['AllSites.FullControl'],
-                'AllSites.Write' => ['AllSites.FullControl'],
-                'AllSites.Manage' => ['AllSites.FullControl'],
-                'AllSites.FullControl' => [],
-                'MyFiles.Read' => [],
-                'MyFiles.Write' => [],
+                'AllSites.Read' => 'Scope',
+                'AllSites.Write' => 'Scope',
+                'AllSites.Manage' => 'Scope',
+                'AllSites.FullControl' => 'Scope',
+                'MyFiles.Read' => 'Scope',
+                'MyFiles.Write' => 'Scope',
             ],
             'Microsoft.Exchange' => [
-                'Calendars.ReadWrite' => [],
+                'Calendars.Read' => 'Scope',
+                'Calendars.ReadWrite' => 'Scope',
             ],
             'OneNote' => [
-                'Notes.ReadWrite' => [],
-                'Notes.Create' => [],
+                'Notes.ReadWrite' => 'Scope',
+                'Notes.Read' => 'Scope',
+                'Notes.Create' => 'Scope',
             ],
         ];
     }

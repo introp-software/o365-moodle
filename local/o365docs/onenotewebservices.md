@@ -1,6 +1,5 @@
-Class Notebook Add-In for OneNote and Moodle
-============================================
-In order to use the Class Notebook Add-In for OneNote you must enable Office 365 web services.    
+Webservices for OneNote Assignments
+===================================
 
 Setup
 -----

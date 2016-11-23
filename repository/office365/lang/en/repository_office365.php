@@ -21,15 +21,14 @@
  * @copyright (C) 2014 onwards Microsoft, Inc. (http://microsoft.com/)
  */
 
-$string['cachedef_unifiedfolderids'] = 'Office 365 Repository - Unified folder IDs';
-$string['configplugin'] = 'Configure Office 365 Repository';
+$string['cachedef_unifiedfolderids'] = 'OneDrive for Business - Unified folder IDs';
+$string['configplugin'] = 'Configure OneDrive for Business Repository';
 $string['courses'] = 'SharePoint (Courses)';
-$string['coursegroup'] = 'Disable Groups (Courses) folder in file picker';
 $string['groups'] = 'Groups (Courses)';
 $string['defaultgroupsfolder'] = 'Course Files';
 
 $string['erroraccessdenied'] = 'Access denied';
-$string['errorauthoidcnotconfig'] = 'Please configure the OpenID Connect authentication plugin before attempting to use the Office 365 repository.';
+$string['errorauthoidcnotconfig'] = 'Please configure the OpenID Connect authentication plugin before attempting to use the OneDrive for Business repository.';
 $string['errorbadclienttype'] = 'Invalid client type.';
 $string['errorbadpath'] = 'Bad Path';
 $string['errorcoursenotfound'] = 'Course not found';
@@ -38,13 +37,9 @@ $string['erroro365required'] = 'This file is currently only available to Office 
 
 $string['file'] = 'File';
 $string['myfiles'] = 'My OneDrive';
-$string['officevideo'] = 'Disable Office 365 Video folder in file picker';
-$string['office365:view'] = 'View Office 365 repository';
-$string['onedrivegroup'] = 'Disable My OneDrive folder in file picker';
+$string['office365:view'] = 'View OneDrive for Business repository';
 $string['pluginname'] = 'Office 365';
-$string['pluginname_help'] = 'An Office 365 Repository';
-$string['sharepointgroup'] = 'Disable SharePoint (Courses) folder in file picker';
-$string['trendinggroup'] = 'Disable Files Trending Around Me folder in file picker';
+$string['pluginname_help'] = 'A OneDrive for Business Repository';
 $string['upload'] = 'Upload New File';
 $string['notconfigured'] = '<p class="error">To use this plugin, you must first configure the <a href="{$a}/admin/settings.php?section=local_o365">Office 365 plugins</a></p>';
 $string['trendingaround'] = 'Files Trending Around Me';

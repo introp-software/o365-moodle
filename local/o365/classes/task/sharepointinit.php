@@ -114,17 +114,13 @@ class sharepointinit extends \core\task\adhoc_task {
                 continue;
             }
 
-            if (\local_o365\feature\sharepointcustom\utils::course_subsite_enabled($course) === true) {
-                try {
-                    $sharepoint->create_course_site($course);
-                    $successes[] = $course->id;
-                    mtrace('Created course subsite for course '.$course->id);
-                } catch (\Exception $e) {
-                    mtrace('Encountered error creating course subsite for course '.$course->id);
-                    $failures[$course->id] = $e->getMessage();
-                }
-            } else {
-                mtrace('Skipping course '.$course->id.' (not enabled)');
+            try {
+                $sharepoint->create_course_site($course);
+                $successes[] = $course->id;
+                mtrace('Created course subsite for course '.$course->id);
+            } catch (\Exception $e) {
+                mtrace('Encountered error creating course subsite for course '.$course->id);
+                $failures[$course->id] = $e->getMessage();
             }
         }
         if (!empty($failures)) {

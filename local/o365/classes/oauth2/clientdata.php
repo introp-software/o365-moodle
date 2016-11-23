@@ -39,9 +39,6 @@ class clientdata {
     /** @var string The token endpoint URI. */
     protected $tokenendpoint;
 
-    /** @var boolean The app-only token endpoint URI. */
-    protected $apptokenendpoint = false;
-
     /**
      * Constructor.
      *
@@ -49,23 +46,12 @@ class clientdata {
      * @param string $clientsecret The registered client secreet.
      * @param string $authendpoint The authorization endpoint URI.
      * @param string $tokenendpoint The token endpoint URI.
-     * @param string $apptokenendpoint The app-only token endpoint URI.
      */
-    public function __construct($clientid, $clientsecret, $authendpoint, $tokenendpoint, $apptokenendpoint = null) {
+    public function __construct($clientid, $clientsecret, $authendpoint, $tokenendpoint) {
         $this->clientid = $clientid;
         $this->clientsecret = $clientsecret;
         $this->authendpoint = $authendpoint;
         $this->tokenendpoint = $tokenendpoint;
-        if (!empty($apptokenendpoint)) {
-            $this->apptokenendpoint = $apptokenendpoint;
-        } else {
-            $tenant = get_config('local_o365', 'aadtenant');
-            if (!empty($tenant)) {
-                $this->apptokenendpoint = 'https://login.microsoftonline.com/'.$tenant.'/oauth2/token';
-            } else {
-                \local_o365\utils::debug('Did not populate clientdata:apptokenendpoint because no tenant was present');
-            }
-        }
     }
 
     /**
@@ -117,14 +103,5 @@ class clientdata {
      */
     public function get_tokenendpoint() {
         return $this->tokenendpoint;
-    }
-
-    /**
-     * Get the token for app-only authentication.
-     *
-     * @return string The app-only token endpoint URI.
-     */
-    public function get_apptokenendpoint() {
-        return $this->apptokenendpoint;
     }
 }
