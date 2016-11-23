@@ -19,9 +19,9 @@
         <form id='frmLoginToSkype' method='get' action='https://login.microsoftonline.com/common/oauth2/authorize'>
             <input type='hidden' name='response_type' value='token' />
             <input type='hidden' name='client_id' value='7dce320c-abe7-4308-a941-d1cb4e248d4b' />
-            <input type='hidden' name='redirect_uri' value='http://localhost:81/moodle30/blocks/skype_web/skypelogin.php' />
+            <input type='hidden' name='redirect_uri' value='@@wwwroot@@/blocks/skype_web/skypelogin.php' />
             <input type='hidden' name='resource' value='https://webdirin1.online.lync.com' />
-            <input type='hidden' name='state' value='http://localhost:81/moodle30/course/view.php?id=3' />
+            <input type='hidden' name='state' value='@@wwwroot@@/course/view.php?id=3' />
             <button id='btnSkypeLogin' class='btn btn-success'>Login To Skype</button>
         </form>
     </div>

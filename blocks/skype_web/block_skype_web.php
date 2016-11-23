@@ -67,17 +67,6 @@ class block_skype_web extends block_base
 
         $this->content = new stdClass;
         $this->content->text = '';
-//        $this->content->text = '<div class="conference">';
-//        $this->content->text .= '<h2>Conferance</h2><h3 style="margin-left: 20px">Skype Status : <span id="skype_status"></span></h3>';
-//        $this->content->text .= '<div class="conversation" style="padding: 10px 0px 10px 10px;display: none" id="new_meeting"><div id="startNewVideoMeeting" class="button">Start a new video meeting</div><br>';
-//        $this->content->text .= '<h3 id="starting" style="display: none">Starting new meeting...</h3><br><div id="meeting" style="display: none"><input id="newMeetingUri" class="input" placeholder="Meeting URI" />';
-//        $this->content->text .= '<div class="add-p-container">';
-//        $this->content->text .= '<br>Add Participants: <br><input type="text" id="txt-contact" placeholder="sip:someone@example.com" />';
-//        $this->content->text .= '<button id="btn-add-participant">Add</button><br>';
-//        $this->content->text .= '<h4>Participants :</h4><ul id="participants"></ul></div></div></div>';
-//        $this->content->text .= '<div class="conversation" style="display: none" id="self_video"><div class="header"><h3>Self Camera</h3></div>';
-//        $this->content->text .= '<div id="av-self" class="av-container"><div id="previewWindow" class="render-window"></div></div></div></div>';
-//        $this->content->text .= '<iframe style="border:0;" src="http://localhost:81/moodle30/blocks/skype_web/skypetest.php" width="95%" height="700"></iframe>';
 
         if ($USER->auth == 'oidc' || !empty($SESSION->skype_login)) {
             $this->content->text .= file_get_contents($CFG->dirroot.'/blocks/skype_web/skypeweb.html');
