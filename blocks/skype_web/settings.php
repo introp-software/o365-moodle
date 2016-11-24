@@ -15,15 +15,16 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package block_skype_web
+ * Microsoft block settings.
+ *
+ * @package block_microsoft
  * @author Aashay Zajriya <aashay@introp.net>
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @copyright (C) 2014 onwards Microsoft Open Technologies, Inc. (http://msopentech.com/)
+ * @copyright (C) 2014 onwards Microsoft, Inc. (http://microsoft.com/)
  */
 
-$string['pluginname'] = 'Skype Web';
-$string['skype_web'] = 'Skype Web';
-$string['skype_web:addinstance'] = 'Add a new Skype Web block';
-$string['skype_web:myaddinstance'] = 'Add a new Skype Web block to the My Moodle page';
-$string['settings_clientid'] = 'Client ID';
-$string['settings_clientid_desc'] = 'Your Azure AD application client ID. This is shown in the "Configure" section of your Azure AD application.';
+defined('MOODLE_INTERNAL') || die;
+
+$configkey = new lang_string('settings_clientid', 'block_skype_web');
+$configdesc = new lang_string('settings_clientid_desc', 'block_skype_web');
+$settings->add(new admin_setting_configtext('auth_oidc/clientid', $configkey, $configdesc, '', PARAM_TEXT));
