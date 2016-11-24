@@ -10,12 +10,12 @@ $(function () {
             $('.wrappingdiv .signed-in').hide();
             $('.modal').show();
              testForConfigAndSignIn({
-                        "client_id": "7dce320c-abe7-4308-a941-d1cb4e248d4b",
+                        "client_id": "de5875db-c425-43e1-b35a-bf823f5decc0",
                         "origins": ["https://webdir.online.lync.com/autodiscover/autodiscoverservice.svc/root"],
                         "cors": true,
                         "version": 'SkypeOnlinePreviewApp/1.0.0',
-                        "redirect_uri": 'http://localhost:81/moodle30/blocks/skype_web/skypetest.php',
-                        "state": 'aHR0cDovL2xvY2FsaG9zdDo4MS9tb29kbGUzMC9jb3Vyc2Uvdmlldy5waHA/aWQ9Mw=='
+                        "redirect_uri": 'http://localhost:81/moodle31/blocks/skype_web/skypetest.php',
+                        "state": 'aHR0cDovL2xvY2FsaG9zdDo4MS9tb29kbGUzMS9jb3Vyc2Uvdmlldy5waHA/aWQ9Mg=='
             });
         }
         function signin(options) {
