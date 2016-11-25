@@ -155,7 +155,7 @@ NS.init = function (config) {
         });
         // Show default avatar if contact's fails to load
         function setDefaultAvatar(event) {
-            $(event.target).attr('src', root + '/blocks/skype_web/images/default.png');
+            $(event.target).attr('src', root + '/blocks/skype_web/pix/default.png');
         }
     };
 };
