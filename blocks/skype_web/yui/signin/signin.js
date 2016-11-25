@@ -21,7 +21,7 @@ NS.init = function (config) {
                 "origins": ["https://webdir.online.lync.com/autodiscover/autodiscoverservice.svc/root"],
                 "cors": true,
                 "version": 'SkypeOnlinePreviewApp/1.0.0',
-                "redirect_uri": root + '/blocks/skype_web/skypetest.php'
+                "redirect_uri": root + '/blocks/skype_web/skypeloginreturn.php'
             });
         }
         function signin(options) {
@@ -50,6 +50,7 @@ NS.init = function (config) {
             }, function (error) {
                 // if something goes wrong in either of the steps above,
                 // display the error message
+                debugger;
                 $(".modal").hide();
                 alert("Can't sign in, please check the user name and password.");
                 console.log(error || 'Cannot sign in');
