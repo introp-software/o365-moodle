@@ -111,7 +111,7 @@ NS.init = function (config) {
         });
         // Show default avatar if user's fails to load
         $(".photo-c img").error(function (event) {
-            $(event.target).attr('src', root + + '/blocks/skype_web/images/default.png');
+            $(event.target).attr('src', root + + '/blocks/skype_web/pix/default.png');
         });
     };
 };

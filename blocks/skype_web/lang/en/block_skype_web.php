@@ -25,5 +25,3 @@ $string['pluginname'] = 'Skype Web';
 $string['skype_web'] = 'Skype Web';
 $string['skype_web:addinstance'] = 'Add a new Skype Web block';
 $string['skype_web:myaddinstance'] = 'Add a new Skype Web block to the My Moodle page';
-$string['settings_clientid'] = 'Client ID';
-$string['settings_clientid_desc'] = 'Your Azure AD application client ID. This is shown in the "Configure" section of your Azure AD application.';

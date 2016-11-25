@@ -36,15 +36,17 @@ class block_skype_web extends block_base
         global $PAGE, $CFG;
         $this->title = get_string('skype_web', 'block_skype_web');
         $client_id = get_config('auth_oidc', 'clientid');
-        $PAGE->requires->yui_module('moodle-block_skype_web-skype', 'M.block_skype_web.init_skype', array(array('client_id' => $client_id)));
+        $config = array('client_id' => $client_id, 'wwwroot' => $CFG->wwwroot);
+        $PAGE->requires->yui_module('moodle-block_skype_web-skype', 'M.block_skype_web.init_skype',
+                array(array('client_id' => $client_id)));
         $PAGE->requires->yui_module('moodle-block_skype_web-groups', 'M.block_skype_web.groups.init',
-                array(array('client_id' => $client_id, 'wwwroot' => $CFG->wwwroot)));
+                array($config));
         $PAGE->requires->yui_module('moodle-block_skype_web-signin', 'M.block_skype_web.signin.init',
-                array(array('client_id' => $client_id, 'wwwroot' => $CFG->wwwroot)));
+                array($config));
         $PAGE->requires->yui_module('moodle-block_skype_web-contact', 'M.block_skype_web.contact.init',
-                array(array('client_id' => $client_id, 'wwwroot' => $CFG->wwwroot)));
+                array($config));
         $PAGE->requires->yui_module('moodle-block_skype_web-self', 'M.block_skype_web.self.init',
-                array(array('client_id' => $client_id, 'wwwroot' => $CFG->wwwroot)));
+                array($config));
     }
 
     /**
@@ -53,7 +55,7 @@ class block_skype_web extends block_base
      * @return bool Has settings or not.
      */
     public function has_config() {
-        return true;
+        return false;
     }
 
     /**
