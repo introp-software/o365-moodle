@@ -7,7 +7,7 @@
         </div>
         <div class="persona persona-xl self">
             <div class="note-c">
-                <div id="txt-note" class="editable" contenteditable="true" placeholder="What's happening today?"></div>
+                <div id="txt-note" class="editable" contenteditable="true" placeholder="{{# get_string}}status_placeholder{{/ get_string}}"></div>
                 <div class="tick"></div>
             </div>
             <div class="photo-c">
@@ -17,29 +17,29 @@
             <div class="detail">
                 <div id="self-name" class="primary"></div>
                 <select id="sel-presence" class="secondary">
-                    <option value="Online">Available</option>
-                    <option value="Busy">Busy</option>
-                    <option value="DoNotDisturb">Do not disturb</option>
-                    <option value="BeRightBack">Be right back</option>
-                    <option value="Away">Appear away</option>
+                    <option value="Online">{{# get_string}}option_available{{/ get_string}}</option>
+                    <option value="Busy">{{# get_string}}option_busy{{/ get_string}}</option>
+                    <option value="DoNotDisturb">{{# get_string}}option_disturb{{/ get_string}}</option>
+                    <option value="BeRightBack">{{# get_string}}option_back{{/ get_string}}</option>
+                    <option value="Away">{{# get_string}}option_away{{/ get_string}}</option>
                 </select>
-                <div id="self-location" class="editable tertiary" contenteditable="true" placeholder="Enter a Location"></div>
+                <div id="self-location" class="editable tertiary" contenteditable="true" placeholder="{{# get_string}}location_placeholder{{/ get_string}}"></div>
             </div>
         </div>
     </div>
-    <h2>Get Contact</h2>
+    <h2>{{# get_string}}lbl_contact{{/ get_string}}</h2>
     <div class="contact">
         <div>
-            <input type="text" id="useruri" placeholder="someone@example.com" />
-            <span id="btn-get-contact">Get Contact</span>
+            <input type="text" id="useruri" placeholder="{{# get_string}}email_placeholder{{/ get_string}}" />
+            <span id="btn-get-contact">{{# get_string}}lbl_contact{{/ get_string}}</span>
         </div>
         <div id="status"></div>
         <div id="result"></div>
     </div>
-    <h2>Group</h2>
+    <h2>{{# get_string}}lbl_group{{/ get_string}}</h2>
     <div class="groups">
         <div id="results"></div>
     </div>
-    <h2>Chat Service</h2>
-    <button id='btnOpenChat' class='btn btn-success'>Open Chat</button>
+    <h2>{{# get_string}}lbl_chat{{/ get_string}}</h2>
+    <button id='btnOpenChat' class='btn btn-success'>{{# get_string}}lbl_button{{/ get_string}}</button>
 </div>
