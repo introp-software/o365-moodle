@@ -17,6 +17,6 @@
     $PAGE->requires->yui_module('moodle-block_skype_web-chatservice', 'M.block_skype_web.chatservice.init', array($config));
     
     echo $OUTPUT->header();
-    echo file_get_contents($CFG->dirroot.'/blocks/skype_web/skypechat.html');
+    echo file_get_contents($CFG->dirroot.'/blocks/skype_web/html_templates/skype_chat.html');
     echo $OUTPUT->footer();
 ?>
