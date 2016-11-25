@@ -1,10 +1,9 @@
 <div class="wrappingdiv">
-
-    <h2>Self</h2>
+    <h2>{{# get_string}}lbl_self{{/ get_string}}</h2>
     <div class="self">
         <div class="need-to-add">
-            <p>Title: <span id="self-title"></span></p>
-            <p>Email: <span id="self-email"></span></p>
+            <p>{{# get_string}}lbl_title{{/ get_string}}: <span id="self-title"></span></p>
+            <p>{{# get_string}}lbl_email{{/ get_string}}: <span id="self-email"></span></p>
         </div>
         <div class="persona persona-xl self">
             <div class="note-c">
@@ -28,7 +27,6 @@
             </div>
         </div>
     </div>
-
     <h2>Get Contact</h2>
     <div class="contact">
         <div>
@@ -38,13 +36,10 @@
         <div id="status"></div>
         <div id="result"></div>
     </div>
-
     <h2>Group</h2>
     <div class="groups">
         <div id="results"></div>
     </div>
-
     <h2>Chat Service</h2>
     <button id='btnOpenChat' class='btn btn-success'>Open Chat</button>
-
 </div>

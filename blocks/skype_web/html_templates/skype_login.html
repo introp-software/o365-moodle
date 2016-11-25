@@ -1,0 +1,20 @@
+<script>
+    $(function () {
+        'use strict';
+        $("input[type='hidden'][name='state']").val(window.location.href);
+        $('#btnSkypeLogin').on('click', function () {
+            $('#frmLoginToSkype').submit();
+        });
+    });
+</script>
+{{# get_string}}pluginname{{/ get_string}}
+<div class="wrappingdiv">
+    <form id='frmLoginToSkype' method='get' action='https://login.microsoftonline.com/common/oauth2/authorize'>
+        <input type='hidden' name='response_type' value='token' />
+        <input type='hidden' name='client_id' value='779c1182-1add-453c-bee2-20aa620e2780' />
+        <input type='hidden' name='redirect_uri' value='@@wwwroot@@/blocks/skype_web/skypelogin.php' />
+        <input type='hidden' name='resource' value='https://webdirin1.online.lync.com' />
+        <input type='hidden' name='state' value='' />
+        <button id='btnSkypeLogin' class='btn btn-success'>Login To Skype</button>
+    </form>
+</div>

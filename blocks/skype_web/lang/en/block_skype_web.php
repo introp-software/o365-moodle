@@ -25,3 +25,6 @@ $string['pluginname'] = 'Skype Web';
 $string['skype_web'] = 'Skype Web';
 $string['skype_web:addinstance'] = 'Add a new Skype Web block';
 $string['skype_web:myaddinstance'] = 'Add a new Skype Web block to the My Moodle page';
+$string['lbl_self'] = 'Self';
+$string['lbl_title'] = 'Title';
+$string['lbl_email'] = 'Email';

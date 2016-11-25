@@ -5,31 +5,16 @@ registeredListeners.forEach(function (listener) {
     listener.dispose();
 });
 registeredListeners = [];
-/**
- * This script demonstrates how to send instant messages
- * with the SkypeWeb Conversation model.
- */
-$(function(){
-    
-    /*
-    $(".chat-service").dialog({autoOpen: false, 
-    show: {
-        effect: "blind",
-        duration: 1000
-      },
-    hide: {
-        effect: "blind",
-        duration: 1000
-      },
-    position:{
-        my: "right bottom", at: "right bottom", of: window
-    },
-    height: 650,
-    width: 450
-    });
-});*/
+
+M.block_skype_web = M.block_skype_web || {};
+NS = M.block_skype_web.chatservice = {};
+
+NS.init = function (config) {
+    /**
+     * This script demonstrates how to send instant messages
+     * with the SkypeWeb Conversation model.
+     */
     'use strict';
-   
     window['chat-service_load'] = function () {
         if (window['noMeResource']) {
             $('.container .content .noMe').show();
@@ -52,8 +37,7 @@ $(function(){
                     chatService.accept();
                     uiToChatState();
                     $(".chat-name").text(conversation.participants(0).person.displayName());
-                }
-                else {
+                } else {
                     chatService.reject();
                 }
                 conversation.historyService.activityItems.added(function (message) {
@@ -154,20 +138,18 @@ $(function(){
         });
         function uiToChatState() {
             $("#input-message").show();
-            //$("#start").hide();
+            $("#start").hide();
             $('#status-header').show();
         }
         function uiToStartState() {
             $("#message-history").empty();
             $("#input-message").hide();
-            //$("#start").show();
+            $("#start").show();
             $('#status-header').hide();
         }
         function historyAppend(message) {
             xHistory.append(message);
-            xHistory.animate({ "scrollTop": xHistory[0].scrollHeight }, 'fast');
+            xHistory.animate({"scrollTop": xHistory[0].scrollHeight}, 'fast');
         }
     };
-    });    
- 
-
+};

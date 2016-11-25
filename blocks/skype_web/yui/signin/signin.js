@@ -8,7 +8,7 @@ NS.init = function (config) {
     window['sign-in_load'] = function () {
         var windowCtr = 1;
         $('#btnOpenChat').on('click', function () {
-            window.open('http://localhost/moodle312/blocks/skype_web/skypechat.php', 'Skype Chat' + windowCtr++, 'width=375,height=400,');
+            window.open(root + '/blocks/skype_web/skypechat.php', 'Skype Chat' + windowCtr++, 'width=375,height=400,');
         });
         if (window.skypeWebApp && window.skypeWebApp.signInManager.state() == "SignedIn") {
             $('.wrappingdiv .signed-in').show();

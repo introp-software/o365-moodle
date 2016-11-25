@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -20,33 +21,26 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @copyright (C) 2014 onwards Microsoft Open Technologies, Inc. (http://msopentech.com/)
  */
-
 defined('MOODLE_INTERNAL') || die();
 
 /**
  * Skype Block.
  */
-class block_skype_web extends block_base
-{
+class block_skype_web extends block_base {
+
     /**
      * Initialize plugin.
      */
-    public function init()
-    {
+    public function init() {
         global $PAGE, $CFG;
         $this->title = get_string('skype_web', 'block_skype_web');
         $client_id = get_config('auth_oidc', 'clientid');
         $config = array('client_id' => $client_id, 'wwwroot' => $CFG->wwwroot);
-        $PAGE->requires->yui_module('moodle-block_skype_web-skype', 'M.block_skype_web.init_skype',
-                array(array('client_id' => $client_id)));
-        $PAGE->requires->yui_module('moodle-block_skype_web-groups', 'M.block_skype_web.groups.init',
-                array($config));
-        $PAGE->requires->yui_module('moodle-block_skype_web-signin', 'M.block_skype_web.signin.init',
-                array($config));
-        $PAGE->requires->yui_module('moodle-block_skype_web-contact', 'M.block_skype_web.contact.init',
-                array($config));
-        $PAGE->requires->yui_module('moodle-block_skype_web-self', 'M.block_skype_web.self.init',
-                array($config));
+        $PAGE->requires->yui_module('moodle-block_skype_web-skype', 'M.block_skype_web.init_skype', array(array('client_id' => $client_id)));
+        $PAGE->requires->yui_module('moodle-block_skype_web-groups', 'M.block_skype_web.groups.init', array($config));
+        $PAGE->requires->yui_module('moodle-block_skype_web-signin', 'M.block_skype_web.signin.init', array($config));
+        $PAGE->requires->yui_module('moodle-block_skype_web-contact', 'M.block_skype_web.contact.init', array($config));
+        $PAGE->requires->yui_module('moodle-block_skype_web-self', 'M.block_skype_web.self.init', array($config));
     }
 
     /**
@@ -70,7 +64,7 @@ class block_skype_web extends block_base
         $PAGE->requires->jquery();
         $PAGE->requires->jquery_plugin('ui');
         $PAGE->requires->jquery_plugin('ui-css');
-        
+
         $skypesdkurl = new moodle_url('https://swx.cdn.skype.com/shared/v/1.2.9/SkypeBootstrap.js');
         $PAGE->requires->js($skypesdkurl, true);
 
@@ -80,28 +74,23 @@ class block_skype_web extends block_base
 
         $this->content = new stdClass;
         $this->content->text = '';
-
         if ($USER->auth == 'oidc' || !empty($SESSION->skype_login)) {
-            //$configjsurl = new moodle_url($CFG->wwwroot.'/blocks/skype_web/js/config.js');
-            //$PAGE->requires->js($configjsurl, true);
-            
-            //$signinjsurl = new moodle_url($CFG->wwwroot.'/blocks/skype_web/js/sign-in.js');
-            //$PAGE->requires->js($signinjsurl, true);
-            
-            //$selfjsurl = new moodle_url($CFG->wwwroot.'/blocks/skype_web/js/self.js');
-            //$PAGE->requires->js($selfjsurl, true);
-            
-            //$contactjsurl = new moodle_url($CFG->wwwroot.'/blocks/skype_web/js/contact.js');
-            //$PAGE->requires->js($contactjsurl, true);
-            
-            $this->content->text .= file_get_contents($CFG->dirroot.'/blocks/skype_web/skypeweb.html');
+            $this->content->text .= $this->get_template($CFG->dirroot . '/blocks/skype_web/html_templates/skype_block.html');
         } else {
-            $this->content->text .= file_get_contents($CFG->dirroot.'/blocks/skype_web/skypewebbutton.html');
+            $this->content->text .= $this->get_template($CFG->dirroot . '/blocks/skype_web/html_templates/skype_login.html');
         }
+
         $this->content->text = str_replace("@@wwwroot@@", $CFG->wwwroot, $this->content->text);
-
         $this->content->footer = '';
-
         return $this->content;
     }
+
+    private function get_template($templatepath) {
+        $templateengine = new Mustache_Engine();
+        $output = $templateengine->render(file_get_contents($templatepath), array('get_string' => function($stringtolocalize) {
+                return get_string($stringtolocalize, 'block_skype_web');
+            }));
+        return $output;
+    }
+
 }
