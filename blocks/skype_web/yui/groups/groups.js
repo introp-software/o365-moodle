@@ -26,6 +26,8 @@ NS.init = function (config) {
             var tagGroup;
             if (group.name())
                 tagGroup = createGroupView(group.persons, group.name());
+            else if(group.type())
+                tagGroup = createGroupView(group.persons, group.type());
             else
                 tagGroup = createGroupView(group.persons, group.relationshipLevel());
             $('#results').append(tagGroup);
