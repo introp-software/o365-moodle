@@ -41,6 +41,7 @@ class block_skype_web extends block_base {
         $PAGE->requires->yui_module('moodle-block_skype_web-signin', 'M.block_skype_web.signin.init', array($config));
         $PAGE->requires->yui_module('moodle-block_skype_web-contact', 'M.block_skype_web.contact.init', array($config));
         $PAGE->requires->yui_module('moodle-block_skype_web-self', 'M.block_skype_web.self.init', array($config));
+        $PAGE->requires->yui_module('moodle-block_skype_web-login','M.block_skype_web.login.init', array($config));
     }
 
     /**
