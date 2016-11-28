@@ -31,6 +31,10 @@ class block_skype_web extends block_base {
      * Initialize plugin.
      */
     public function init() {
+
+        global $PAGE;
+        $skypesdkurl = new moodle_url('https://swx.cdn.skype.com/shared/v/1.2.9/SkypeBootstrap.js');
+        $PAGE->requires->js($skypesdkurl, true);
         $this->title = get_string('skype_web', 'block_skype_web');
     }
 
@@ -56,22 +60,19 @@ class block_skype_web extends block_base {
         $PAGE->requires->jquery_plugin('ui');
         $PAGE->requires->jquery_plugin('ui-css');
 
-        $skypesdkurl = new moodle_url('https://swx.cdn.skype.com/shared/v/1.2.9/SkypeBootstrap.js');
-        $PAGE->requires->js($skypesdkurl, true);
-
         $clientid = get_config('auth_oidc', 'clientid');
         $config = array('client_id' => $clientid, 'wwwroot' => $CFG->wwwroot);
-        $PAGE->requires->yui_module('moodle-block_skype_web-groups', 'M.block_skype_web.groups.init', array($config));
-        $PAGE->requires->yui_module('moodle-block_skype_web-signin', 'M.block_skype_web.signin.init', array($config));
-        $PAGE->requires->yui_module('moodle-block_skype_web-contact', 'M.block_skype_web.contact.init', array($config));
-        $PAGE->requires->yui_module('moodle-block_skype_web-self', 'M.block_skype_web.self.init', array($config));
-        $PAGE->requires->yui_module('moodle-block_skype_web-login', 'M.block_skype_web.login.init', array($config));
 
         $this->content = new stdClass;
         $this->content->text = '';
         if ($USER->auth == 'oidc' || !empty($SESSION->skype_login)) {
+            $PAGE->requires->yui_module('moodle-block_skype_web-groups', 'M.block_skype_web.groups.init', array($config));
+            $PAGE->requires->yui_module('moodle-block_skype_web-signin', 'M.block_skype_web.signin.init', array($config));
+            $PAGE->requires->yui_module('moodle-block_skype_web-contact', 'M.block_skype_web.contact.init', array($config));
+            $PAGE->requires->yui_module('moodle-block_skype_web-self', 'M.block_skype_web.self.init', array($config));
             $this->content->text .= $this->get_template($CFG->dirroot . '/blocks/skype_web/html_templates/skype_block.html');
         } else {
+            $PAGE->requires->yui_module('moodle-block_skype_web-login', 'M.block_skype_web.login.init', array($config));
             $this->content->text .= $this->get_template($CFG->dirroot . '/blocks/skype_web/html_templates/skype_login.html');
         }
 
@@ -87,5 +88,4 @@ class block_skype_web extends block_base {
         }));
         return $output;
     }
-
 }
