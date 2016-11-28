@@ -1,4 +1,4 @@
-// we want to dispose all the previous conversations added event listeners because
+// We want to dispose all the previous conversations added event listeners because
 // in this demo site, we don't want to samples interfere with each other.
 var registeredListeners = registeredListeners || [];
 registeredListeners.forEach(function (listener) {
@@ -10,10 +10,8 @@ M.block_skype_web = M.block_skype_web || {};
 NS = M.block_skype_web.chatservice = {};
 
 NS.init = function (config) {
-    /**
-     * This script demonstrates how to send instant messages
-     * with the SkypeWeb Conversation model.
-     */
+    // This script demonstrates how to send instant messages
+    // with the SkypeWeb Conversation model.
     'use strict';
     window['chat-service_load'] = function () {
         if (window['noMeResource']) {
@@ -25,11 +23,12 @@ NS.init = function (config) {
         var incomingMessageCount = 0;
         var addedListener = client.conversationsManager.conversations.added(function (conversation) {
             var con = client.conversationsManager.conversations(0);
-            if (con && con.selfParticipant.chat.state() == "Connected")
+            if (con && con.selfParticipant.chat.state() == "Connected") {
                 return;
+            }
             chatService = conversation.chatService;
             chatService.accept.enabled.when(true, function () {
-                // instead of using chatService.accept.enabled.changed, selfParticipant.chat.state.changed should also work.
+                // Instead of using chatService.accept.enabled.changed, selfParticipant.chat.state.changed should also work.
                 // conversation.selfParticipant.chat.state.changed(function (state) {
                 var fAccept = confirm("Accept this IM invitation?");
                 if (fAccept) {
@@ -86,8 +85,9 @@ NS.init = function (config) {
             pSearch.text($('#chat-to').text());
             pSearch.getMore().then(function () {
                 var sr = pSearch.results();
-                if (sr.length < 1)
+                if (sr.length < 1) {
                     throw new Error('Contact not found');
+                }
                 return sr[0].result;
             }).then(function (contact) {
                 uiToChatState();
@@ -112,7 +112,7 @@ NS.init = function (config) {
                 $(".notification").text(text);
             }
         }
-        // returns a DOM element attached to the Message model
+        // Returns a DOM element attached to the Message model.
         function XMessage(message) {
             var xTitle = $('<div>').addClass('sender');
             var xStatus = $('<div>').addClass('status');
@@ -125,10 +125,11 @@ NS.init = function (config) {
                 });
             }
             message.status.changed(function (status) {
-                //xStatus.text(status);
+                // xStatus.text(status);
             });
-            if (message.sender.id() == client.personsAndGroupsManager.mePerson.id())
+            if (message.sender.id() == client.personsAndGroupsManager.mePerson.id()) {
                 xMessage.addClass("fromMe");
+            }
             return xMessage;
         }
         $('#btn-stop-messaging').click(function () {

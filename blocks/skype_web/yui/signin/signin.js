@@ -26,7 +26,7 @@ NS.init = function (config) {
         }
         function signin(options) {
             window.skypeWebApp.signInManager.signIn(options).then(function () {
-                // when the sign in operation succeeds display the user name
+                // When the sign in operation succeeds display the user name.
                 $(".modal").hide();
                 $('body').trigger({type: 'UserLoggedIn'});
 
@@ -46,10 +46,10 @@ NS.init = function (config) {
                 }
                 $("#anonymous-join").addClass("disable");
                 $(".menu #sign-in").click();
-                //listenForConversations();
+                // listenForConversations();
             }, function (error) {
-                // if something goes wrong in either of the steps above,
-                // display the error message
+                // If something goes wrong in either of the steps above,
+                // display the error message.
                 debugger;
                 $(".modal").hide();
                 alert("Can't sign in, please check the user name and password.");

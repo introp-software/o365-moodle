@@ -1,4 +1,4 @@
-// we want to dispose all the previous conversations added event listeners because
+// We want to dispose all the previous conversations added event listeners because
 // in this demo site, we don't want to samples interfere with each other.
 var registeredListeners = registeredListeners || [];
 registeredListeners.forEach(function (listener) {
@@ -11,25 +11,23 @@ NS = M.block_skype_web.contact = {};
 NS.init = function (config) {
     'use strict';
     var root = config.wwwroot;
-    /**
-     * This script demonstrates how to find a contact by name, email,
-     * phone number or some other attribute and display it in the UI.
-     *
-     * This sample also shows how to create a dynamic UI on top of the
-     * contact object, so that whenever the contact's properties change
-     * (e.g. when it goes offline or online), its new state gets
-     * reflected in the UI.
-     */
+    // This script demonstrates how to find a contact by name, email,
+    // phone number or some other attribute and display it in the UI.
+    //
+    // This sample also shows how to create a dynamic UI on top of the
+    // contact object, so that whenever the contact's properties change
+    // (e.g. when it goes offline or online), its new state gets
+    // reflected in the UI.
     window['contact_load'] = function () {
         var client = window.skypeWebApp;
-        // when the user clicks on the "Get Contact" button
+        // When the user clicks on the "Get Contact" button.
         $('#useruri').keypress(function (evt) {
             if (evt.keyCode == 13) {
                 $("#btn-get-contact").click();
             }
         });
         $('#btn-get-contact').click(function () {
-            // start the contact search
+            // Start the contact search.
             var pSearch = client.personsAndGroupsManager.createPersonSearchQuery();
             if (!$('#useruri').val().trim()) {
                 return;
@@ -39,13 +37,14 @@ NS.init = function (config) {
             pSearch.getMore().then(function () {
                 var sr = pSearch.results();
                 $('#status').text('Search succeeded. Parsing results...');
-                // and throw an exception if no contacts found:
+                // And throw an exception if no contacts found:
                 // the exception will be passed to the next "fail"
                 // handler: this is how Promises/A+ work.
-                if (sr.length == 0)
+                if (sr.length == 0) {
                     throw new Error('The contact not found');
-                // then take any found contact
-                // and pass the found contact down the chain
+                }
+                // Then take any found contact
+                // and pass the found contact down the chain.
                 return sr[0].result;
             }).then(function (contact) {
                 $('#status').text('A contact found. Creating a view for it...');
@@ -99,14 +98,14 @@ NS.init = function (config) {
                             .addClass(presenceClass = 'photo-presence-' + status);
                 };
                 var subP = [], subM = [];
-                // display static data of the contact
+                // Display static data of the contact.
                 $('#result').empty()
                         .append(persona)
                         .append(cCapabilities);
-                // let the user enable presence subscription
+                // Let the user enable presence subscription.
                 $('#subscribe').click(function () {
-                    // tell the contact to notify us whenever its
-                    // presence or note properties change
+                    // Tell the contact to notify us whenever its
+                    // presence or note properties change.
                     contact.note.text.changed(onPropertyChanged.bind(cNote));
                     contact.displayName.changed(onPropertyChanged.bind(cDisplayName));
                     contact.title.changed(onPropertyChanged.bind(cTitle));
@@ -119,7 +118,7 @@ NS.init = function (config) {
                     subP.push(contact.status.subscribe());
                 });
                 $('#subscribe2').click(function () {
-                    // tell the contact to notify us whenever its available capabilities change
+                    // Tell the contact to notify us whenever its available capabilities change.
                     capabilities.chat.changed(onCapabilities);
                     capabilities.audio.changed(onCapabilities);
                     capabilities.video.changed(onCapabilities);
@@ -127,10 +126,10 @@ NS.init = function (config) {
                     subM.push(capabilities.audio.subscribe());
                     subM.push(capabilities.video.subscribe());
                 });
-                // let the user disable presence subscription
+                // Let the user disable presence subscription.
                 $('#unsubscribe').click(function () {
-                    // tell the contact that we are no longer interested in
-                    // its presence and note properties
+                    // Tell the contact that we are no longer interested in
+                    // its presence and note properties.
                     $.each(subP, function (i, sub) {
                         sub.dispose();
                     });
@@ -141,19 +140,17 @@ NS.init = function (config) {
                     subM = [];
                 });
                 function onCapabilities() {
-                    cCapabilities.text('Capabilities: ' +
-                            'chat = ' + capabilities.chat +
-                            ', audio = ' + capabilities.audio +
-                            ', video = ' + capabilities.video);
+                    cCapabilities.text('Capabilities: ' + 'chat = ' + capabilities.chat
+                            + ', audio = ' + capabilities.audio + ', video = ' + capabilities.video);
                 }
                 $('#status').text('A contact was found and displayed.');
             }).then(null, function (error) {
-                // if either of the steps above threw an exception,
-                // catch it here and display to the user
+                // If either of the steps above threw an exception,
+                // catch it here and display to the user.
                 $('#status').text(error || 'Something went wrong');
             });
         });
-        // Show default avatar if contact's fails to load
+        // Show default avatar if contact's fails to load.
         function setDefaultAvatar(event) {
             $(event.target).attr('src', root + '/blocks/skype_web/pix/default.png');
         }
