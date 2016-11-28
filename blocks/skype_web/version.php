@@ -29,5 +29,5 @@ $plugin->component = 'block_skype_web';
 $plugin->maturity = MATURITY_STABLE;
 $plugin->release = '30.0.0.5';
 $plugin->dependencies = [
-    'local_o365' => 2015111909,
+    'auth_oidc' => 2016062002,
 ];
