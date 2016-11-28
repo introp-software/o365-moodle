@@ -56,13 +56,14 @@ class block_skype_web extends block_base {
 
         global $PAGE, $CFG, $USER, $SESSION;
 
-        $PAGE->requires->jquery();
-        $PAGE->requires->jquery_plugin('ui');
-        $PAGE->requires->jquery_plugin('ui-css');
-
+        // To avoid duplication of block code and JavaScript inclusion.
         if ($this->content != null) {
             return $this->content;
         }
+
+        $PAGE->requires->jquery();
+        $PAGE->requires->jquery_plugin('ui');
+        $PAGE->requires->jquery_plugin('ui-css');
 
         $clientid = get_config('auth_oidc', 'clientid');
         $config = array('client_id' => $clientid, 'wwwroot' => $CFG->wwwroot);
