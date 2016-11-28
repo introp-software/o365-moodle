@@ -60,6 +60,10 @@ class block_skype_web extends block_base {
         $PAGE->requires->jquery_plugin('ui');
         $PAGE->requires->jquery_plugin('ui-css');
 
+        if ($this->content != null) {
+            return $this->content;
+        }
+
         $clientid = get_config('auth_oidc', 'clientid');
         $config = array('client_id' => $clientid, 'wwwroot' => $CFG->wwwroot);
 
