@@ -57,6 +57,7 @@ class block_skype_web extends block_base {
         global $PAGE, $CFG, $USER, $SESSION;
 
         // To avoid duplication of block code and JavaScript inclusion.
+        // Ref: https://moodle.org/mod/forum/discuss.php?d=170193.
         if ($this->content != null) {
             return $this->content;
         }
