@@ -5,6 +5,7 @@ NS.init = function (config) {
     'use strict';
     var clientId = config.client_id;
     var root = config.wwwroot;
+    var errormessage = config.errormessage;
     window['sign-in_load'] = function () {
         var windowCtr = 1;
         $('#btnOpenChat').on('click', function () {
@@ -50,9 +51,8 @@ NS.init = function (config) {
             }, function (error) {
                 // If something goes wrong in either of the steps above,
                 // display the error message.
-                debugger;
                 $(".modal").hide();
-                alert("Can't sign in, please check the user name and password.");
+                alert(errormessage);
                 console.log(error || 'Cannot sign in');
             });
         }

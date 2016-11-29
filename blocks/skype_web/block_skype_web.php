@@ -70,7 +70,7 @@ class block_skype_web extends block_base {
 
         // Getting the client ID from OpenID authentication plugin.
         $clientid = get_config('auth_oidc', 'clientid');
-        $config = array('client_id' => $clientid, 'wwwroot' => $CFG->wwwroot);
+        $config = array('client_id' => $clientid, 'wwwroot' => $CFG->wwwroot, 'errormessage' => get_string('signinerror', 'block_skype_web'));
 
         $this->content = new stdClass;
         $this->content->text = '';

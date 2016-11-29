@@ -49,3 +49,4 @@ $string['skypelogin_button'] = 'Login To Skype';
 $string['skypesdkurl'] = 'https://swx.cdn.skype.com/shared/v/1.2.9/SkypeBootstrap.js';
 $string['settings_clientid'] = 'Client ID';
 $string['settings_clientid_desc'] = 'Your Azure AD application client ID. This is shown in the "Configure" section of your Azure AD application.';
+$string['signinerror'] = "Can't sign in, please check the user name and password.";
