@@ -25,6 +25,7 @@
 
 require_once(__DIR__ . '/../../config.php');
 require_login();
+// Getting the client ID from OpenID authentication plugin.
 $clientid = get_config('auth_oidc', 'clientid');
 $config = array('client_id' => $clientid, 'wwwroot' => $CFG->wwwroot);
 
@@ -33,11 +34,14 @@ global $PAGE;
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url('/blocks/skype_web/skypechat.php');
 $PAGE->set_title('skype chat');
+// Adding Skype SDK in the $PAGE.
 $skypesdkurl = new moodle_url(get_string('skypesdkurl', 'block_skype_web'));
 $PAGE->requires->js($skypesdkurl, true);
+// Added required Skype SDK's YUI module in the $PAGE.
 $PAGE->requires->jquery();
 $PAGE->requires->jquery_plugin('ui');
 $PAGE->requires->jquery_plugin('ui-css');
+// Added required Skype SDK's YUI module in the $PAGE.
 $PAGE->requires->yui_module('moodle-block_skype_web-signin', 'M.block_skype_web.signin.init', array($config));
 $PAGE->requires->yui_module('moodle-block_skype_web-chatservice', 'M.block_skype_web.chatservice.init', array($config));
 
