@@ -21,6 +21,8 @@
  * @copyright (C) 2014 onwards Microsoft Open Technologies, Inc. (http://msopentech.com/)
  */
 
+//  Display the Skype Web Block's chat window page.
+
 require_once(__DIR__ . '/../../config.php');
 require_login();
 $clientid = get_config('auth_oidc', 'clientid');

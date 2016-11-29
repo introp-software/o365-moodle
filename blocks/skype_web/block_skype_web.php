@@ -33,6 +33,7 @@ class block_skype_web extends block_base {
     public function init() {
 
         global $PAGE;
+        // Adding Skype SDK in the $PAGE.
         $skypesdkurl = new moodle_url(get_string('skypesdkurl', 'block_skype_web'));
         $PAGE->requires->js($skypesdkurl, true);
         $this->title = get_string('skype_web', 'block_skype_web');
@@ -62,10 +63,12 @@ class block_skype_web extends block_base {
             return $this->content;
         }
 
+        // Adding jquery, jquery-ui, jquery-ui-css in the $PAGE.
         $PAGE->requires->jquery();
         $PAGE->requires->jquery_plugin('ui');
         $PAGE->requires->jquery_plugin('ui-css');
 
+        // Getting the client ID from OpenID authentication plugin.
         $clientid = get_config('auth_oidc', 'clientid');
         $config = array('client_id' => $clientid, 'wwwroot' => $CFG->wwwroot);
 
@@ -87,6 +90,12 @@ class block_skype_web extends block_base {
         return $this->content;
     }
 
+    /**
+     * Get block content's tamplate according to the user's login status.
+     *
+     * @param string $templatepath The HTML template path that we are using.
+     * @return string Block content.
+     */
     private function get_template($templatepath) {
         $templateengine = new Mustache_Engine();
         $output = $templateengine->render(file_get_contents($templatepath), array('get_string' => function($stringtolocalize) {

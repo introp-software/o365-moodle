@@ -21,6 +21,8 @@
  * @copyright (C) 2014 onwards Microsoft Open Technologies, Inc. (http://msopentech.com/)
  */
 
+// Skype Web Block login return page after the web SDK's Authentication.
+
 require_once(__DIR__ . '/../../config.php');
 ?>
 <html>
@@ -48,5 +50,3 @@ require_once(__DIR__ . '/../../config.php');
         ?>
     </body>    
 </html>
-
-
