@@ -116,10 +116,8 @@ To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](http
 ![Generate Secret Key for azure AD application](images/SecretKeyGen.PNG "fig:Generate Secret Key for azure AD application" )
 
 4. Under **API ACCESS** menu, select **Required Permissions**  and click **Add** to add permission mentioned below.
-![Add Reuquired permissions for azure AD application](images/AddAPIAccess.PNG "fig:Add Reuquired permissions for azure AD application")
 
 5. Click **Select an API** to select the API and then click **Select Permissions** to select  permissions mensioned below and  then save the changes.
-![Mark reuquired  application permissions for azure AD application](images/RequiredPermisions.PNG "fig:Mark reuquired application permissions for azure AD application")
 
 6. For Microsoft Graph APIs, in the Delegated Permissions dropdown select the following permissions:
     1.  Read user calendars.
@@ -157,13 +155,10 @@ To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](http
     6. Read and write notebooks that the user can access (preview).
     7. Read items in all site collections.
     8. Read and write all users full profiles.
-    9. Sign users in.
-    
-![Mark Application Permission for Microsoft Graph API](images/MarkPermission.PNG "fig:Mark Application Permission for Microsoft Graph API")
+    9. Sign users in.    
 
 11. For Windows Azure Active Directory APIs, in the Delegated Permissions dropdown select the following permissions:
     1.  Read directory data
-
 
 12. For Windows Azure Active Directory APIs, in the Delegated Permissions dropdown select the following permissions:
     1. Read and write files in all site collections.
@@ -171,9 +166,6 @@ To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](http
     3. Read directory data.
     4. Read and write all groups.
     5. Read and write calendars in all mailboxes.
-
-
-
 
 ### Assign Users to your Azure Active Directory Application
 
@@ -201,22 +193,18 @@ Navigate to **Site Administration \> Plugins \> Local plugins**.  Click **Micros
     1.  Copy the client ID and key you noted earlier from Azure AD into the appropriate fields in step 1.
     2.  Click save changes at the bottom of the page.
 
-
 2.  Set a System API User
     1.  This should report "No user set". Click "Set User"
     2.  You will be taken to an Office 365 login screen. Log in as a user that has administrator access in your Office 365 subscription.
     3.  This user is used for system operations that are not specific to a single user - i.e. user sync operations. This user needs to have administrator access to be able to access all needed information.
     4.  You can change this user later if needed.
 
-
 3.  Detect additional information and verify your setup.
     1.  Azure AD Tenant.  This is the domain name that identifies your Office 365 subscription, for example "contoso.onmicrosoft.com".  If you know it, enter it in this box, if not, click the "Detect" button to attempt to detect the correct value.
     2.  OneDrive for Business URL.  This is the URL that your users use to access OneDrive for Business. This can usually be determined from your AzureAD tenant, for example, if your tenant is "contoso.onmicrosoft.com", your OneDrive for Business URL is "contoso-my.sharepoint.com.".  If you know the URL, enter it here, otherwise click "Detect" to attempt to detect the correct value.  Only enter the domain name, do not include "<http://>", "www." or any trailing slashes. For example "contoso-my.sharepoint.com", not "<https://contoso-my.sharepoint.com/>"
-	3.  Azure Setup.  This tool verifies that Azure has been correctly set up. Click the "Update" button to check setup.  If the tool reports any missing permissions, return to Azure and ensure that all required permissions have been added to your configured application for Moodle.
-
-
+    3.  Azure Setup.  This tool verifies that Azure has been correctly set up. Click the "Update" button to check setup.  If the tool reports any missing permissions, return to Azure and ensure that all required permissions have been added to your configured application for Moodle.
+    
 4. Click **Save** to save changes.
-
 
 
 
@@ -225,8 +213,6 @@ Setting up your users.
 
 
 To use any Office 365 features, a Moodle user must be connected to an Office 365 user that has an active Office 365 subscription. The plugin suite provides several different ways to set up user accounts in Moodle to use Office 365 features.
-
-
 
 
 Importing Azure AD users into Moodle
