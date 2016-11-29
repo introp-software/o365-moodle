@@ -45,7 +45,7 @@ class block_skype_web extends block_base {
      * @return bool Has settings or not.
      */
     public function has_config() {
-        return false;
+        return true;
     }
 
     /**

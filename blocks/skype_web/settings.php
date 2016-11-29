@@ -21,10 +21,8 @@
  * @copyright (C) 2014 onwards Microsoft, Inc. (http://microsoft.com/)
  */
 
-defined('MOODLE_INTERNAL') || die();
+defined('MOODLE_INTERNAL') || die;
 
-$plugin->version = 2016041211;
-$plugin->requires = 2015111600;
-$plugin->component = 'block_skype_web';
-$plugin->maturity = MATURITY_STABLE;
-$plugin->release = '30.0.0.5';
+$configkey = new lang_string('settings_clientid', 'block_skype_web');
+$configdesc = new lang_string('settings_clientid_desc', 'block_skype_web');
+$settings->add(new admin_setting_configtext('auth_oidc/clientid', $configkey, $configdesc, '', PARAM_TEXT));
