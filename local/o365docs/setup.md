@@ -113,7 +113,7 @@ To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](http
 ![Highlighted application ID ](images/AppDetails.png "fig:Highlighted application ID" )
 
 3. Under **API ACCESS** menu select **Keys** and enter a description in the **Description** field, select appropripate **Duration** and click **Save**. Once the key is created, note the generated secret key and save it somewhere. You won’t be able to view it again.
-![Generate Secret Key for azure AD application](images/SecretKeyGen.PNG "fig:Generate Secret Key for azure AD application" )
+![Generate Secret Key for azure AD application](images/SecretKeyGen1.PNG "fig:Generate Secret Key for azure AD application" )
 
 4. Under **API ACCESS** menu, select **Required Permissions**  and click **Add** to add permission mentioned below.
 
