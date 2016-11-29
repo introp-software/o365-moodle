@@ -63,12 +63,12 @@ After you have the plugins installed in your Moodle instance, you'll need to do 
 
 
 5.  Note the Redirect URI. This should be the URI of your Moodle instance followed by /auth/oidc. You will need to enter this value into Azure AD later, so note this value and put it aside.
-    1.  For example, <https://www.example.com/auth/oidc/>
+    1.  For example, <https://www.example.com/auth/oidc/> where example.com is the URL of your Moodle instance.
     2.  Notes:
         1.  This is a fixed value that is derived from your Moodle site's configured URL (wwwroot). You cannot change this value directly. If you need to change it for any of the following reasons, you must change your Moodle site's configured domain name ($CFG-\>wwwroot).
         2.  This URL must be a fully qualified domain name pointing to your Moodle instance.
         3.  If your Moodle installation is configured with an IP address pointing to your instance, you must change $CFG-\>wwwroot in your config.php to a fully-qualified domain name.
-        4.  This domain name does not need to be publicly accessible (i.e. internet-wide), but does need to be accessible to users of your Moodle instance. So, for example, you can use a intranet-only domain name.
+        4.  This domain name does not need to be publicly accessible (i.e. internet-wide), but does need to be accessible to users of your Moodle instance. So, for example, you can use an intranet-only domain name.
 
 
 ### Prepare your Office 365 account for single sign-on with your Moodle installation
@@ -80,14 +80,11 @@ You will need an Azure subscription. If you do not have one, you can create one 
 To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](https://portal.azure.com) to manage your Office 365 Microsoft Azure Active Directory:
 
 1.  Sign in to [Azure Portal](https://portal.azure.com)
-2.  Create a new Active Directory : Click on plus icon on left menu then search ‘Active Directory”/Click on **Security+Indentity>Active Directory**
+2.  Create a new Active Directory : Click on plus icon on left menu then search ‘Active Directory” or Click on **Security+Indentity**, followed by **Active Directory**. Click **Create** to create a new Azure active directory.
 ![Locate Active Directory with creation options](images/ActiveDirectory1.png "fig:Locate Active Directory dialog with creation options")
 ![Add directory dialog with creation options](images/AddDirectory.PNG "fig:Add directory dialog with creation options")
 
 **Note**: Create azure directory link will navigate to classic azure portal.
-
-3.  Log out and sign back in to your Azure account.
-
 
 **Note**: In order to sign-up for an Azure subscription, you are required to enter a credit card and phone number. If only use the subscription to access the Azure Active Directory associated with your Office 365 subscription and enable no other paid services such as Virtual Machines, you will not be charged for the subscription.
 
@@ -100,7 +97,7 @@ To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](http
 2.  Click on the **Active Directory** icon on the left menu, and then click on **App registrations**. If no apps have been added to your directory, this page will only show the **Add** link.
 ![Create Application option](images/CreateApp1.PNG "fig: Create Application option")
 
-3.  On the dialogue enter the Application **Name**,  select **Application Type** and **Sign-on URL** in the format **<https://example.com/auth/oidc/>** then create application.
+3.  On the dialogue enter the Application **Name**,  select **Web app/API** in **Application Type** and enter **https://www.example.com/auth/idc** in **Sign-on URL** then click **Create** to create the application.
 ![Create application with details ](images/CreateApp.PNG "fig:Create azure AD application dialog")
 
 4.  Select created azure AD application and Modify **Reply URL**  and check Home page URL under  **Properties** section.
@@ -115,21 +112,21 @@ To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](http
 2. Locate **Application ID** note this value (write it down or copy it somewhere), and set it aside. You'll need it later as **Client ID**.
 ![Highlighted application ID ](images/AppDetails.png "fig:Highlighted application ID" )
 
-3. Under **API ACCESS** menu select key then enter the key name and save it. After copy the generated secret key and **save** somewhere as later you won’t be able to see it again.
+3. Under **API ACCESS** menu select **Keys** and enter a description in the **Description** field, select appropripate **Duration** and click **Save**. Once the key is created, note the generated secret key and save it somewhere. You won’t be able to view it again.
 ![Generate Secret Key for azure AD application](images/SecretKeyGen.PNG "fig:Generate Secret Key for azure AD application" )
 
-4. Under **API ACCESS** menu select **Required Permissions** for Azure AD application and add permission mentioned.
+4. Under **API ACCESS** menu, select **Required Permissions**  and click **Add** to add permission mentioned below.
 ![Add Reuquired permissions for azure AD application](images/AddAPIAccess.PNG "fig:Add Reuquired permissions for azure AD application")
 
-5. Click **Add** button and add below mentioned permissions then save the changes.
+5. Click **Select an API** to select the API and then click **Select Permissions** to select  permissions mensioned below and  then save the changes.
 ![Mark reuquired  application permissions for azure AD application](images/RequiredPermisions.PNG "fig:Mark reuquired application permissions for azure AD application")
 
-6. In the Delegated Permissions dropdown for Office 365 Exchange Online select the following permissions:
+6. For Microsoft Graph APIs, in the Delegated Permissions dropdown select the following permissions:
     1.  Read user calendars.
     2.  Read and write user calendars.
 
 
-7. In the Delegated Permissions dropdown for Office 365 SharePoint Online select the following permissions:
+7. For Microsoft Graph APIs, in the Delegated Permissions dropdown select the following permissions:
     1.  Read items in all site collections
     2.  Read and write items in all site collections
     3.  Read and write items and lists in all site collections
@@ -138,7 +135,7 @@ To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](http
     6.  Read and write user files
 
 
-8. In the Delegated Permissions dropdown for Windows Azure Active Directory select the following permissions:
+8. For Windows Azure Active Directory APIs, in the Delegated Permissions dropdown select the following permissions:
     1.  Read and write directory data
         * Note: Write permissions here are used by the Azure AD setup tool to automatically fix permissions. If you do not want to grant directory write access, the plugin suite will work with only the "Read directory data" permission.
     2.  Read all users' full profiles
@@ -151,7 +148,7 @@ To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](http
     3.  View and modify OneNote notebooks.
 
 
-10. In the Delegated Permissions dropdown for Microsoft Graph select the following permissions:
+10. For Microsoft Graph APIs, in the Delegated Permissions dropdown select the following permissions:
     1. Have full access to user calendars.
     2. Access directory as the signed in user.
     3. Read and write directory data.
@@ -164,11 +161,11 @@ To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](http
     
 ![Mark Application Permission for Microsoft Graph API](images/MarkPermission.PNG "fig:Mark Application Permission for Microsoft Graph API")
 
-11. In the Application Permissions dropdown for Windows Azure Active Directory select the following permissions:
+11. For Windows Azure Active Directory APIs, in the Delegated Permissions dropdown select the following permissions:
     1.  Read directory data
 
 
-12. In the Application Permissions dropdown for Microsoft Graph select the following permissions:
+12. For Windows Azure Active Directory APIs, in the Delegated Permissions dropdown select the following permissions:
     1. Read and write files in all site collections.
     2. Read and write all users' full profiles.
     3. Read directory data.
@@ -180,14 +177,15 @@ To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](http
 
 ### Assign Users to your Azure Active Directory Application
 
+To assign users to the application, navigate to Classic Azure portal (<https://manage.windowsazure.com>) by clicking in **Classic Portal**.
 
-1.  Click on the **Active Directory** icon on the left menu, and then click on the desired Azure AD.
-2.  Click the Applications tab at the top of the screen.
+1.  Click on the **Active Directory** icon in the left menu, and then select the desired Azure active directory.
+2.  Click App Reg Applications tab at the top of the screen.
 3.  Select your app.
 4.  Click the Users tab at the top of the screen.
 5.  Select an Office 365 User to assign to assign to the App.
-6.  Click Assign at the bottom of the screen.
-7.  When prompted whether you are sure you want to enable access, click Yes.
+6.  Click **Assign** at the bottom of the screen.
+7.  When prompted whether you are sure you want to enable access, click **Yes**.
 
 
 The application will appear in the [My apps](https://portal.office.com/myapps) page of the application launcher on the Office 365 portal for the users which have been assigned. Unless "User assignment required to access app" setting is enabled in the application, assignment is not necessary for users to use the Moodle integration.
@@ -217,7 +215,7 @@ Navigate to **Site Administration \> Plugins \> Local plugins**.  Click **Micros
 	3.  Azure Setup.  This tool verifies that Azure has been correctly set up. Click the "Update" button to check setup.  If the tool reports any missing permissions, return to Azure and ensure that all required permissions have been added to your configured application for Moodle.
 
 
-4. Click Save changes.
+4. Click **Save** to save changes.
 
 
 
