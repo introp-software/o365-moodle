@@ -33,7 +33,7 @@ class block_skype_web extends block_base {
     public function init() {
 
         global $PAGE;
-        $skypesdkurl = new moodle_url('https://swx.cdn.skype.com/shared/v/1.2.9/SkypeBootstrap.js');
+        $skypesdkurl = new moodle_url(get_string('skypesdkurl', 'block_skype_web'));
         $PAGE->requires->js($skypesdkurl, true);
         $this->title = get_string('skype_web', 'block_skype_web');
     }

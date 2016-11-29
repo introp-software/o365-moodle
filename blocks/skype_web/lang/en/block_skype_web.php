@@ -46,3 +46,4 @@ $string['stop_tooltip'] = 'Stop Instant Messaging';
 $string['lbl_userfound'] = 'Found User';
 $string['type_placeholder'] = 'Type a message here';
 $string['skypelogin_button'] = 'Login To Skype';
+$string['skypesdkurl'] = 'https://swx.cdn.skype.com/shared/v/1.2.9/SkypeBootstrap.js';

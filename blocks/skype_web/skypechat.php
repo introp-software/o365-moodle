@@ -31,7 +31,7 @@ global $PAGE;
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url('/blocks/skype_web/skypechat.php');
 $PAGE->set_title('skype chat');
-$skypesdkurl = new moodle_url('https://swx.cdn.skype.com/shared/v/1.2.9/SkypeBootstrap.js');
+$skypesdkurl = new moodle_url(get_string('skypesdkurl', 'block_skype_web'));
 $PAGE->requires->js($skypesdkurl, true);
 $PAGE->requires->jquery();
 $PAGE->requires->jquery_plugin('ui');
