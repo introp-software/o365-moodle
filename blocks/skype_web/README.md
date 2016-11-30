@@ -61,23 +61,40 @@ To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](http
 2.  Click the Applications tab at the top of the screen.
 3.  Locate the application you created and click it's name in the list.
 4.  Click Configure at the top of the screen.
-5.  Click on **MANAGE MANIFEST** and then Download Manifest.
-6.  On the **Download Manifest** page, click on the link to **Download manifest**.
-7.  Open the downloaded manifest file in any editor and update the value of **oauth2AllowImplicitFlow** to **true**.
-8.  In Azure, click on **MANAGE MANIFEST** and then Upload Manifest.
-9.  On the **Upload Manifest** page, browse the same updated manifest file.
-10. Click the check mark at the bottom right of the dialog.
-11. Locate the **Permissions to other applications** section.
-12. Click **Add application** click the plus sign to the right of **Skype for Business Online**. Note, the plus will appear when you hover over each of the items.
-13. Click the check mark at the bottom right of the dialog.
-14. In the Delegated Permissions dropdown for Skype for Business Online select the following permissions:
+5.  Locate the **Client ID**, note this value (write it down or copy it somewhere), and set it aside. You'll need it later.
+6.  Click on **MANAGE MANIFEST** and then Download Manifest.
+7.  On the **Download Manifest** page, click on the link to **Download manifest**.
+8.  Open the downloaded manifest file in any editor and update the value of **oauth2AllowImplicitFlow** to **true**.
+9.  In Azure, click on **MANAGE MANIFEST** and then Upload Manifest.
+10. On the **Upload Manifest** page, browse the same updated manifest file.
+11. Click the check mark at the bottom right of the dialog.
+12. Locate the **Permissions to other applications** section.
+13. Click **Add application** click the plus sign to the right of **Skype for Business Online**. Note, the plus will appear when you hover over each of the items.
+14. Click the check mark at the bottom right of the dialog.
+15. In the Delegated Permissions dropdown for Skype for Business Online select the following permissions:
     1.  Read/write Skype user contacts and groups.
     2.  Receive conversation invites (preview).
     3.  Read/write Skype user information (preview).
     4.  Create Skype Meetings.
     5.  Initiate conversations and join meetings.
 
-15. Click save at the bottom of the screen.
+16. Click save at the bottom of the screen.
+
+### Configure the Setting page in the Skype Web Block plugin
+
+Navigate to **Site Administration \> Plugins \> Blocks**.  Click **Skype Web**. Complete the following steps:
+
+1.  Register Moodle with Azure AD (process outlined above).
+    1.  Copy the client ID you noted earlier from Azure AD into the appropriate fields in step 1.
+    2.  Click save changes at the bottom of the page.
+
+## Skype Web Block
+
+The Skype Web block provides the ability for users to quickly link off to Skype for Business services.
+        - Shows self details
+        - Shows contacts
+        - Shows groups
+        - Allow chat service
 
 ## Support
 
