@@ -136,7 +136,7 @@ To use Moodle with Office 365 for SSO, you must [configure Microsoft Azure](http
     2.  Read all users' full profiles
     3.  Access the directory as the signed-in user.
 
-9. In the Delegated Permissions dropdown for OneNote select the following permissions:
+9. For OneNote APIs, in the Delegated Permissions dropdown select the following permissions:
     1.  Create pages in OneNote notebooks
     2.  View OneNote notebooks.
     3.  View and modify OneNote notebooks.
