@@ -21,7 +21,7 @@
  * @copyright (C) 2014 onwards Microsoft, Inc. (http://microsoft.com/)
  */
 
-//  Display the Skype Web Block's chat window page.
+// Display the Skype Web Block's chat window page.
 
 require_once(__DIR__ . '/../../config.php');
 require_login();
