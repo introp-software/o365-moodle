@@ -24,6 +24,7 @@
 // Display the Skype Web Block's chat window page.
 
 require_once(__DIR__ . '/../../config.php');
+require_once('mustache.php');
 require_login();
 // Getting the client ID from OpenID authentication plugin.
 $clientid = get_config('auth_oidc', 'clientid');

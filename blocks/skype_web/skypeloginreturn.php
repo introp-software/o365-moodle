@@ -43,7 +43,7 @@ require_once(__DIR__ . '/../../config.php');
         </script>
     </head>
     <body>
-        <h1>Please wait while system redirects to moodle ...!</h1>
+        <h1><?php get_string('waitmessage', 'block_skype_web');?></h1>
         <?php
             global $SESSION;
             $SESSION->skype_login = true;

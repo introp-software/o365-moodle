@@ -21,6 +21,7 @@
  * @copyright (C) 2014 onwards Microsoft, Inc. (http://microsoft.com/)
  */
 defined('MOODLE_INTERNAL') || die();
+require_once('mustache.php');
 
 /**
  * Skype Block.
